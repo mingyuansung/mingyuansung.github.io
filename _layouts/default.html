@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-
-  {% include head.html %}
-
-  <body>
-
-    <div class="container content">
-      <div class="masthead">
-        <h3 class="masthead-title">
-          <a href="/" title="Home">{{ site.title }}</a>
-          <small>{{ site.tagline }}</small>
-        </h3>
-      </div>
-
-      {{ content }}
-
-      <div class="footer">
-        <p>
-          &copy; {{ site.time | date: '%Y' }}. All rights reserved.
-        </p>
-      </div>
-    </div>
-
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1265.19">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 16.0px Menlo; color: #d44950; background-color: #f9f9f9}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 16.0px Menlo; color: #515151; background-color: #f9f9f9}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 16.0px Menlo; color: #515151; background-color: #f9f9f9; min-height: 19.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 16.0px Menlo; color: #999999; background-color: #f9f9f9}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 22.0px; font: 16.0px Menlo; color: #2f6f9f; background-color: #f9f9f9}
+    p.p6 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    span.s1 {color: #2f6f9f}
+    span.s2 {color: #515151}
+    span.s3 {color: #4f9fcf}
+    span.s4 {color: #d44950}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;h3</span><span class="s2"> </span><span class="s3">class=</span>"masthead-title"<span class="s1">&gt;</span></p>
+<p class="p2"><span class="s1">&lt;a</span> <span class="s3">href=</span><span class="s4">"/"</span> <span class="s3">title=</span><span class="s4">"Home"</span><span class="s1">&gt;</span>{{ site.title }}<span class="s1">&lt;/a&gt;</span></p>
+<p class="p3"><br></p>
+<p class="p2">{% for page in site.pages_list %}</p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">  </span></span>&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<p class="p5"><span class="s2"><span class="Apple-converted-space">  </span></span>&lt;small&gt;&lt;a<span class="s2"> </span><span class="s3">href=</span><span class="s4">"{{ page[1]<span class="Apple-converted-space">  </span>}}"</span>&gt;<span class="s2">{{ page[0] }}</span>&lt;/a&gt;&lt;/small&gt;</p>
+<p class="p2">{% endfor %}</p>
+<p class="p5">&lt;/h3&gt;</p>
+<p class="p6"><br></p>
+</body>
 </html>
