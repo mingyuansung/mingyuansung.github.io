@@ -3,6 +3,7 @@ layout: post
 title: Some useful note at work
 ---
 
+
 <p>php sf2/app/console doctrine:migrations:status<br>
 php sf2/app/console doctrine:migrations:diff   (to create a doctrine file)<br>
 php sf2/app/console doctrine:migrations:execute —up 20140513142030<br>
