@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Example content part II
+title: Example content
 ---
 
 
