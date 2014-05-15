@@ -1,3 +1,7 @@
+---
+layout: post
+title: Some useful test at work
+---
 Thus is the first line.
 2nd line
 for 3rd line
