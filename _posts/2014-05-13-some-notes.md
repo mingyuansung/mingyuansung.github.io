@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Some useful note at work
+title: Other Work Note
 ---
 
 
