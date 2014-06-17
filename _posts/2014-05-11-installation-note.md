@@ -14,6 +14,25 @@ title: Making Git Friendlier
         * With a MacPorts installation: `sudo ln -s /opt/local/apache2/bin/apachectl /opt/local/bin/apachectl`  
 * MacPorts default config directory: `/opt/local/apache2/conf`  
 * MacPorts default logs directory: `/opt/local/apache2/logs`  
+* In `/etc/hosts`
+    * Create a localhost entry such as `www.sourceintelligence.local`
+* Create an apache2 virtual host
+
+    * MacPorts installations use `/opt/local/apache2/conf/extra/httpd-vhosts.conf`  
+        
+    ```  
+    <VirtualHost *:80>
+        ServerName www.sourceintelligence.local
+        DocumentRoot "/fully/qualified/path/to/EDEN/sf2/web"
+
+    <Directory "/fully/qualified/path/to/EDEN/sf2/web">
+        Options -Indexes
+        AllowOverride All
+        Allow from All
+    </Directory>
+    </VirtualHost>
+    ```
+* Grant apache write permissions on app/logs and app/cache, see [tutorial](http://symfony.com/doc/2.1/book/installation.html#configuration-and-setup)
 
 ##2. PHP 5.3.x  
 
