@@ -6,7 +6,7 @@ title: Making Git Friendlier
 
 * Example ~/.gitconfig:  
 
-```
+    ```
     [user]  
         name = Your Name  
         email = yourname@sourceintelligence.com  
@@ -33,7 +33,7 @@ title: Making Git Friendlier
 * Download [git-prompt.bash](https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh) to your home directory
 * Add the following to your bash config (`~/.profile` on OSX)  
 
-```
+    ```
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
