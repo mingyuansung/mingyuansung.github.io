@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Making Git Friendlier
+title: Installation Guide
 ---  
 
 ##1. Apache2  
