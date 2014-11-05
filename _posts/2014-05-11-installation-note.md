@@ -3,7 +3,22 @@ layout: post
 title: Installation Guide
 ---  
 
-##1. Apache2  
+##0. MacPort
+* install macport for your OSX verison from https://www.macports.org/install.php
+
+##1. GIT
+* create your own git account and get Chris to give you permission to access company git source
+* go to https://github.com/Source-Intelligence
+* fork EDEN and others to your own git account
+* download and install GitHub for OSX
+* clone to your desktop
+
+##2. XCODE
+* go to install xcode form Apple App Store
+* agree xcode license `sudo xcodebuild -license`
+
+
+##3. Apache2  
 
 * As of 2014-01 we are using 2.2.x in production  
 * To install using MacPorts:  
@@ -34,13 +49,13 @@ title: Installation Guide
     ```
 * Grant apache write permissions on app/logs and app/cache, see [tutorial](http://symfony.com/doc/2.1/book/installation.html#configuration-and-setup)
 
-##2. PHP 5.3.x  
+##4. PHP 5.3.x  
 
 * You must use 5.3.x to run/write code compatible with the production environment  
 * To install using MacPorts:  
-    * `sudo port install php5 +apache2 +pear`
+    * `sudo port install php53 +apache2 +pear`
     * `cd /opt/local/apache2/modules`
-    * `sudo /opt/local/apache2/bin/apxs -a -e -n "php5" libphp5.so`
+    * `sudo /opt/local/apache2/bin/apxs -a -e -n "php53" libphp5.so`
     * In `/opt/local/apache2/conf/httpd.conf`:
         * At the end of the file add `Include conf/extra/mod_php.conf`
     * You may want to copy and symlink your php.ini
@@ -49,8 +64,8 @@ title: Installation Guide
 * Install PHP extensions:
     * Via MacPorts:  
     ```
-sudo port install php5-apc php5-curl php5-iconv php5-intl \
-    php5-mbstring php5-mcrypt php5-mysql php5-openssl php5-posix php5-xdebug  
+sudo port install php53-apc php53-curl php53-iconv php53-intl
+    php53-mbstring php53-mcrypt php53-mysql php53-openssl php53-posix php53-xdebug  
     ```  
 * The following PECL/PEAR libraries should be installed (follow links for install docs):
     * [mongo](http://docs.mongodb.org/ecosystem/drivers/php/)
@@ -58,8 +73,18 @@ sudo port install php5-apc php5-curl php5-iconv php5-intl \
         * In a MacPorts installation do:  
             * `sudo sh -c 'echo "extension=mongo.so" > /opt/local/var/db/php5/mongo.ini'`  
         * `php --ri mongo` should now print driver info
+        * if need manuall install, get the source tar file from Ming and unzip to any of your local directory
+        * change to that unzipped directory
+        * `phpize`
+        * `./configure`
+        * `sudo make install`
+        
     * [symfony2/ClassLoader](http://pear.symfony.com/)
+        * `pear channel-discover pear.symfony.com`
+        * `pear install symfony2/ClassLoader`
+       
     * [symfony2/Yaml](http://pear.symfony.com/)
+        * `pear install symfony2/Yaml`
     * [phpunit](http://phpunit.de/manual/3.7/en/installation.html)  
   
 * In your `php.ini` (for ini file locations use `php --ini`)  
@@ -76,15 +101,25 @@ sudo port install php5-apc php5-curl php5-iconv php5-intl \
             apc.shm_size=128M
 ```  
 
-##3. MySQL
+##5. MySQL
 
 * As of 2014-01 we are using 5.5.x in production
 * On OSX download and install the correct version 64-bit dmg from the link above
     * A good free GUI for MySQL on OSX is [Sequel Pro](http://www.sequelpro.com/)
 * The default installation probably has one `root` user with no password
     * Modify users/passwords as needed.
-    * To prevent potential problems later on, create a user with username `s44admin` which will be used for EDEN connections.
+    * To prevent potential problems later on, create a user with username `s44admin` and password `test` which will be used for EDEN connections.
     * Ask about getting a current database snapshot for development
 * You may want to verify `mysql`, `mysqldump`, `mysqlimport`, etc, are on the PATH
     * With a OSX .dmg install you can do: `sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql`
+
+##6. JAVA
+* [use JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+
+##7. IntelliJ
+
+* To force running under JDK 1.7 edit /Applications/<Product>.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
+* Ask Chris for company license
+
+
 
