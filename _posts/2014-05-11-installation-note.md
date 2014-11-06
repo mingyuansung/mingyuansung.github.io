@@ -15,6 +15,9 @@ title: Installation Guide
 * fork EDEN and others to your own git account
 * download and install GitHub for OSX
 * clone to your desktop
+* cd to your ENED directory
+* `git remote` to take a look your repository. You should have `origin` now.
+* `git remote rename origin si`
 * cd to your EDEN/sf2/app directory
 * `mkdir cache`
 * cd to your EDEN/sf2 directory
@@ -35,6 +38,7 @@ title: Installation Guide
     * install apache php module by `sudo port install php54-apache2handler`
     * `cd /opt/local/apache2/modules`
     * `sudo /opt/local/apache2/bin/apxs -a -e -n php5 mod_php54.so`
+    * This above command should modify your httpd.conf to add in mod_php54.so module
     * To load apache on startup: `sudo port load apache2`  
 * To start/stop/restart you can use apachectl  
     * Symlink `apachectl` to the PATH  
@@ -103,6 +107,10 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         * `./configure`
         * `sudo make install`
         
+    * install pear by doing:
+        * `wget http://pear.php.net/go-pear.phar`
+        * `sudo php -d detect_unicode=0 go-pear.phar`
+        * add pear to your $PATH
     * [symfony2/ClassLoader](http://pear.symfony.com/)
         * `pear channel-discover pear.symfony.com`
         * `pear install symfony2/ClassLoader`
@@ -110,6 +118,18 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     * [symfony2/Yaml](http://pear.symfony.com/)
         * `pear install symfony2/Yaml`
     * [phpunit](http://phpunit.de/manual/3.7/en/installation.html)  
+    * [Composer](https://getcomposer.org/doc/00-intro.md#installation-nix)
+        * `curl -sS https://getcomposer.org/installer | php`
+        * `mv composer.phar /usr/local/bin/composer`
+    * [Node.js](http://nodejs.org/)
+        * `sudo port install nodejs`
+    * npm
+        * `sudo port install npm`
+    * Less
+        * `sudo npm -g install less@1.3.3`
+    * install Vendor
+        * cd to your EDEN directory
+        * `composer install -d sf2/`
   
 * In your `php.ini` (for ini file locations use `php --ini`)  
 
@@ -142,8 +162,9 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
 
 ##7. IntelliJ
 
-* To force running under JDK 1.7 edit /Applications/<Product>.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
+* To force running under JDK 1.7 edit /Applications/IntelliJ IDEA 13.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
 * Ask Chris for company license
+* Go to intellij confiuration -> plugins -> browse repository and install php, php annotations, Symfony2 Plugin, Symfony2 - Clickable Views.
 
 
 
