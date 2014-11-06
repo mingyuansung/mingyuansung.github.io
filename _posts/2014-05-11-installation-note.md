@@ -3,9 +3,9 @@ layout: post
 title: Installation Guide
 ---  
 
-### HAS NOT COMPELTED phpunit settings
+# NOTE: INCOMPELTE
 
-#Please follow the steps to build your development environment
+##Please follow the steps to build your development environment
 
 ##0. Useful Utilities
 * install [macport](https://www.macports.org/install.php)
@@ -163,6 +163,10 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         * `pear install symfony2/Yaml`
     * [phpunit](http://phpunit.de/manual/3.7/en/installation.html)  
         * make sure to use v 3.7.36 for our environment
+        * download 'phpunit-3.7.36.phar' from 'https://phar.phpunit.de/'
+        * rename it to `phpunit.phar`
+        * `chmod +x phpunit.phar`
+        * `sudo mv phpunit.phar /usr/local/bin/phpunit`
     * [Composer](https://getcomposer.org/doc/00-intro.md#installation-nix)
         * `curl -sS https://getcomposer.org/installer | php`
         * `mv composer.phar /usr/local/bin/composer`
@@ -224,6 +228,7 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
 * Ask Chris for company license
 * Go to intellij confiuration -> plugins -> browse repository and install php, php annotations, Symfony2 Plugin, Symfony2 - Clickable Views.
 * Create an empty project and the module under the project shoudl point to your `/EDEN/sf2` directory.  In the module, please exclude folders `/app/cache` and `/vendor`.
+* Clone `https://github.com/Source-Intelligence/misc` then get //MISC/intelliJ/source44_cs.xml style file and copy to /Users//Library/Preferences/IntelliJIdea13/codestyles/ directory. Update the IntelliJ PHP style under code style/php/Wrapping and Braces/ and check both 'Class field/constant groups/Align fields in columns' and 'Class field/constant groups/Align constants'.
 
 
 
