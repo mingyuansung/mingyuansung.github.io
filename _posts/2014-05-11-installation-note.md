@@ -139,7 +139,7 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     ```  
 * The following PECL/PEAR libraries should be installed (follow links for install docs):
     * [mongo](http://docs.mongodb.org/ecosystem/drivers/php/)
-        * `brew install ongodb`
+        * `brew install mongodb`
         * after installation if `php --ri mongo` says `Extension 'mongo' not present.` load the mongo.so extension   
         * modify your `/etc/php.ini` to add in `extension=mongo.so`
         * in a MacPorts installation do:  
