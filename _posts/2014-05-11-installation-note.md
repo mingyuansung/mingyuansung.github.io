@@ -68,7 +68,7 @@ title: Installation Guide
 
 ##2. XCODE
 * go to install xcode form Apple App Store
-* agree xcode license `sudo xcodebuild -license`
+* agree xcode license by running `sudo xcodebuild -license`
 * run `xcode-select --install`
 
 
