@@ -10,6 +10,7 @@ title: Installation Guide
 ##0. Useful Utilities
 * install [macport](https://www.macports.org/install.php)
 * install homebrew `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+* install wget by `brew install wget`
 * optional install `brew install macvim`, this editor can open very large file fine. make sure read the prompt at the end of install to link this very app to your applicaiotn directory
 * optional install [iterm](https://iterm2.com/downloads.html)
 * Check with Nathan if you need `MS Office OSX` version
@@ -162,6 +163,8 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     * [symfony2/Yaml](http://pear.symfony.com/)
         * `pear install symfony2/Yaml`
     * [phpunit](http://phpunit.de/manual/3.7/en/installation.html)  
+        * I can only use phpunit at command line, issue within IntelliJ
+        * do not remember how I did it previously
         * make sure to use v 3.7.36 for our environment
         * download 'phpunit-3.7.36.phar' from 'https://phar.phpunit.de/'
         * rename it to `phpunit.phar`
@@ -227,7 +230,7 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
 * To force running under JDK 1.7 edit /Applications/IntelliJ IDEA 13.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
 * Ask Chris for company license
 * Go to intellij confiuration -> plugins -> browse repository and install php, php annotations, Symfony2 Plugin, Symfony2 - Clickable Views.
-* Create an empty project and the module under the project shoudl point to your `/EDEN/sf2` directory.  In the module, please exclude folders `/app/cache` and `/vendor`.
+* Create an empty project and the module under the project should point to your `/EDEN/sf2` directory.  In the module, please exclude folders `/app/cache` and `/vendor`.
 * Clone `https://github.com/Source-Intelligence/misc` then get //MISC/intelliJ/source44_cs.xml style file and copy to /Users//Library/Preferences/IntelliJIdea13/codestyles/ directory. Update the IntelliJ PHP style under code style/php/Wrapping and Braces/ and check both 'Class field/constant groups/Align fields in columns' and 'Class field/constant groups/Align constants'.
 
 
