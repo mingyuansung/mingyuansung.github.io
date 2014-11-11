@@ -2,21 +2,36 @@
 layout: post
 title: Installation Guide
 ---  
-
-# NOTE: INCOMPELTE
-
-##Please follow the steps to build your development environment
-
+ 
 ##0. Useful Utilities
 * install [macport](https://www.macports.org/install.php)
 * install homebrew `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 * install wget by `brew install wget`
 * optional install `brew install macvim`, this editor can open very large file fine. make sure read the prompt at the end of install to link this very app to your applicaiotn directory
 * optional install [iterm](https://iterm2.com/downloads.html)
+* optional `sudo port install gimp`
 * Check with Nathan if you need `MS Office OSX` version
 * Check with Nathan if you need company `Carbonite` back up support
 * Check with Nathan if you ahve any IT need
 * Check with Missy to grand you access to Enployee Policy, compnay directory, forms etc.  We use `Google Drive`
+* before we install everything, you can update your .profile to the following content. Make sure you modify to your own directory name.
+    
+    ```
+        export ES_HOME=/usr/loca/elasticsearch
+        export PATH=/opt/local/bin:/opt/local/sbin:/Users/mingsung/pear/bin:$ES_HONE/bin:$PATH
+        source ~/.git-completion.bash
+        source ~/.git-prompt.sh
+        export ES_HOME=/usr/local/elasticsearch
+        export GIT_PS1_SHOWDIRTYSTATE=true
+        export GIT_PS1_SHOWSTASHSTATE=true
+        export GIT_PS1_SHOWUNTRACKEDFILES=true
+        export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
+        export M2_REPO=~/.m2/repository
+        export MAVEN_OPTS="-Xms256m -Xmx1g -XX:PermSize=256M -XX:MaxPermSize=512M -XX:+CMSClassUnloadingEnabled"
+        export PS1='\n[\u@\h] \[\e[0;32m\]\w\[\e[0m\] --- \d \t\n[\W$(__git_ps1 " (%s)")]\$'
+        alias s44_latest_mysql_eden='scp msung@s44-buildbox-1:/srv/s44/backups/mysql/latest/s44_prod_eden.sql.gz /Users/mingsung/downloads/.'
+    ```
+
 
 
 ##1. XCODE
@@ -31,7 +46,9 @@ title: Installation Guide
 * go to https://github.com/Source-Intelligence
 * fork EDEN and others to your own github account repository
 * download and install GitHub for OSX
-* then from https://github.com/Source-Intelligence/EDEN , clone to your desktop
+* then from https://github.com/Source-Intelligence/EDEN , choose clone to your desktop
+* Download [.git-completion.bash](https://raw.github.com/git/git/master/contrib/completion/git-completion.bash) to your home directory
+* Download [.git-prompt.sh](https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh) to your home directory
 * cd to your /EDEN directory
 * `git remote -v` to take a look the repository you have there. You should have `origin` now
 * `git remote rename origin si`, or you can use other name than si for easier typing later
@@ -114,6 +131,8 @@ title: Installation Guide
 * You can use 5.4.x to run/write code compatible with the production environment (PROD still use 5.3) 
 * To install using MacPorts:  
     * `sudo port install php54 +apache2 +pear`
+    * `cd /opt/local/bin`
+    * `sudo ln -s /opt/local/bin/php54 /opt/local/bin/php`
     * install apache php module by `sudo port install php54-apache2handler`
     * `cd /opt/local/apache2/modules`
     * `sudo /opt/local/apache2/bin/apxs -a -e -n php5 mod_php54.so`
@@ -134,8 +153,8 @@ title: Installation Guide
         </IfModule>
         ```
     * You may want to copy and symlink your php.ini
-        * `sudo cp /opt/local/etc/php5/php.ini-development /opt/local/etc/php5/php.ini`
-        * `sudo ln -s /opt/local/etc/php5/php.ini /etc/php.ini`
+        * `sudo cp /opt/local/etc/php54/php.ini-development /opt/local/etc/php54/php.ini`
+        * `sudo ln -s /opt/local/etc/php54/php.ini /etc/php.ini`
 * Install PHP extensions:
     * Via MacPorts:  
     ```
@@ -146,26 +165,34 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     * [mongo](http://docs.mongodb.org/ecosystem/drivers/php/)
         * `brew install mongodb`
         * after installation if `php --ri mongo` says `Extension 'mongo' not present.` load the mongo.so extension   
-        * modify your `/etc/php.ini` to add in `extension=mongo.so`
+        * if  mongo installation put mongo.so to be under /usr/lib/php/extensions/no-debug-non-zts-20100525 , copy it to /opt/local/lib/php54/extensions
         * in a MacPorts installation do:  
             * `sudo sh -c 'echo "extension=mongo.so" > /opt/local/var/db/php54/mongo.ini'`  
         * `php --ri mongo` should now print driver info
-        * if need manuall install, get the source tar file from Ming and unzip to any of your local directory
+        * if need manuall install a certain old version, get the source [here](https://github.com/mongodb/mongo-php-driver/releases/tag/1.4.5) and unzip to any of your local directory
         * change to that unzipped directory
-        * `phpize`
+        * `phpize54`
         * `./configure`
         * `sudo make install`
         
-    * install pear by doing:
+    * pear
         * `wget http://pear.php.net/go-pear.phar`
         * `sudo php -d detect_unicode=0 go-pear.phar`
-        * add pear to your $PATH
+        * You will prompted to specify config vars, we want to change #1 and #4.
+
+            ```
+                Press 1 – Installation base ($prefix) – and enter:
+                /opt/local/lib/php54
+                Press 4 – Binaries directory – and enter:
+                /opt/local/bin
+            ```
+        
     * [symfony2/ClassLoader](http://pear.symfony.com/)
-        * `pear channel-discover pear.symfony.com`
-        * `pear install symfony2/ClassLoader`
+        * `sudo pear channel-discover pear.symfony.com`
+        * `sudo pear install symfony2/ClassLoader`
        
     * [symfony2/Yaml](http://pear.symfony.com/)
-        * `pear install symfony2/Yaml`
+        * `sudo pear install symfony2/Yaml`
     * [phpunit](http://phpunit.de/manual/3.7/en/installation.html)  
         * I can only use phpunit at command line, issue within IntelliJ
         * do not remember how I did it previously
@@ -173,7 +200,9 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         * download 'phpunit-3.7.36.phar' from 'https://phar.phpunit.de/'
         * rename it to `phpunit.phar`
         * `chmod +x phpunit.phar`
-        * `sudo mv phpunit.phar /usr/local/bin/phpunit`
+        * `sudo cp phpunit.phar /usr/local/bin/phpunit`
+        * `sudo cp phpunit.phar /opt/local/bin/phpunit`
+        * `sudo cp phpunit.phar /opt/local/bin/phpunit.phar`
     * [Composer](https://getcomposer.org/doc/00-intro.md#installation-nix)
         * `curl -sS https://getcomposer.org/installer | php`
         * `mv composer.phar /usr/local/bin/composer`
@@ -206,8 +235,20 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         
         ```
         [xdebug]
-            xdebug.remote_autostart=1
-            xdebug.remote_enable=1
+            zend_extension_nts=/usr/lib/php/extensions/no-debug-non-zts-20100525/xdebug.so
+            xdebug.auto_trace = 0
+            xdebug.cli_color = 1
+            xdebug.collect_assignments = 1
+            xdebug.collect_params = 1
+            xdebug.default_enable = 1
+            xdebug.remote_enable = 1
+            xdebug.remote_autostart = 1
+            xdebug.remote_handler=dbgp
+            xdebug.remote_mode=req
+            xdebug.remote_host=localhost
+            xdebug.remote_port=9000
+            xdebug.idekey=
+            xdebug.file_link_format="txmt://open/?url=file://%f&line=%l"
 
         [apc]
             apc.shm_size=128M
@@ -233,9 +274,26 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
 
 * To force running under JDK 1.7 edit /Applications/IntelliJ IDEA 13.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
 * Ask Chris for company license
-* Go to intellij confiuration -> plugins -> browse repository and install php, php annotations, Symfony2 Plugin, Symfony2 - Clickable Views.
+* Go to intellij Preferences -> plugins -> browse repository and install php, php annotations, Symfony2 Plugin, Symfony2 - Clickable Views.
+* Go to intellij Preferences -> PHP and define php interpreter points to /opt/local/bin
+* Go to intellij Preferences -> PHP and I put the following to incldue path:
+    * /opt/local/bin
+    * /opt/local/lib/php54/share/pear
+    * /Users/ming/EDEN/sf2/vendor 
+* Go to intellij Preferences -> PHP ->phpunit and point to /opt/local/bin/phpunit.phar
 * Create an empty project and the module under the project should point to your `/EDEN/sf2` directory.  In the module, please exclude folders `/app/cache` and `/vendor`.
+* You can go to RUN -> Edit Configurations... -> + -> add PHPUnit -> create "TestAll" and the test runner directory points to `/Users/mingsung/EDEN/sf2/tests/Source44/Test` and the configuration file points to `/Users/mingsung/EDEN/sf2/tests/phpunit.xml`, then you can run all the EDEN unit tests within IntelliJ
 * Clone `https://github.com/Source-Intelligence/misc` then get //MISC/intelliJ/source44_cs.xml style file and copy to /Users//Library/Preferences/IntelliJIdea13/codestyles/ directory. Update the IntelliJ PHP style under code style/php/Wrapping and Braces/ and check both 'Class field/constant groups/Align fields in columns' and 'Class field/constant groups/Align constants'.
 
+## 8. Verify
+* Try running the check script: `php sf2/app/check.php`
+    * Follow any recommendations
+* Try running the tests
+    * `phpunit --configuration sf2/tests/phpunit.xml`
+* Try rebuilding the cache
+    * `php sf2/app/console cache:clear`
+* Start (or restart) apache and try visiting `www.sourceintelligence.local/app_dev.php` in your browser
+* To login (assuming you have populated local database with dev data)
+    * Create a user via the app/console CLI - source44:user:create
 
 
