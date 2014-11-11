@@ -18,7 +18,15 @@ title: Installation Guide
 * Check with Nathan if you ahve any IT need
 * Check with Missy to grand you access to Enployee Policy, compnay directory, forms etc.  We use `Google Drive`
 
-##1. GIT
+
+##1. XCODE
+* go to install xcode form Apple App Store
+* agree xcode license by running `sudo xcodebuild -license`
+* run `xcode-select --install`
+
+
+
+##2. GIT
 * create your own github account and get Chris to give you permission to access company git repository
 * go to https://github.com/Source-Intelligence
 * fork EDEN and others to your own github account repository
@@ -67,26 +75,17 @@ title: Installation Guide
 * `sudo chmod +a "www-data allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs`
 * `sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs`
 
-##2. XCODE
-* go to install xcode form Apple App Store
-* agree xcode license by running `sudo xcodebuild -license`
-* run `xcode-select --install`
-
 
 ##3. Apache2  
 
 * As of 2014-01 we are using 2.2.x in production  
 * To install using MacPorts:  
     * `sudo port install apache2`  
-    * install apache php module by `sudo port install php54-apache2handler`
-    * `cd /opt/local/apache2/modules`
-    * `sudo /opt/local/apache2/bin/apxs -a -e -n php5 mod_php54.so`
-    * this above command should modify your httpd.conf to add in mod_php54.so module
-    * if you are upgrading from previous php, make sure modify httpd.conf to remove previous php5.so link
+
     * to load apache on startup: `sudo port load apache2`  
-* To start/stop/restart you can use apachectl  
     * symlink `apachectl` to the PATH  
-    * with a MacPorts installation: `sudo ln -s /opt/local/apache2/bin/apachectl /opt/local/bin/apachectl`  
+    * with a MacPorts installation: `sudo ln -s /opt/local/apache2/bin/apachectl /opt/local/bin/apachectl`
+    * To start/stop/restart you can use apachectl    
 * MacPorts default config directory: `/opt/local/apache2/conf`  
 * MacPorts default logs directory: `/opt/local/apache2/logs`  
 * In `/etc/hosts`
@@ -115,6 +114,11 @@ title: Installation Guide
 * You can use 5.4.x to run/write code compatible with the production environment (PROD still use 5.3) 
 * To install using MacPorts:  
     * `sudo port install php54 +apache2 +pear`
+    * install apache php module by `sudo port install php54-apache2handler`
+    * `cd /opt/local/apache2/modules`
+    * `sudo /opt/local/apache2/bin/apxs -a -e -n php5 mod_php54.so`
+    * this above command should modify your httpd.conf to add in mod_php54.so module
+    * if you are upgrading from previous php, make sure modify httpd.conf to remove previous php5.so link
     * in `/opt/local/apache2/conf/httpd.conf`:
         * at the end of the file add `Include conf/extra/mod_php.conf`
         * this is to let apache know how to process php file. Here is the content:
