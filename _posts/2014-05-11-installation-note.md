@@ -9,7 +9,7 @@ title: Installation Guide
 * install wget by `brew install wget`
 * optional install `brew install macvim`, this editor can open very large file fine. make sure read the prompt at the end of install to link this very app to your applicaiotn directory
 * optional install [iterm](https://iterm2.com/downloads.html)
-* optional `sudo port install gimp`
+* optional install [GIMP](http://www.gimp.org/downloads/)
 * Check with Nathan if you need `MS Office OSX` version
 * Check with Nathan if you need company `Carbonite` back up support
 * Check with Nathan if you ahve any IT need
