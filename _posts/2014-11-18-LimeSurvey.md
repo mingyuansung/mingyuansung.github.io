@@ -36,10 +36,22 @@ title: LimeSurvey local testing
 
 ## Mongo DB
 * you need to have local mongo db running. if not, please refer to installation note in a different docuemnt to install it
-* and you need rockmongo as admin
-* on my local, I use `local` as the name of DB
+* and you need rockmongo as admin UI or any other tools you are familiar with
+* on my computer, I use `local` as the name of DB (you can use whatever name) and setup your parameters.yml
+
+    ```
+        # MongoDB settings
+        mongodb.database_name: local
+        mongodb.connection.server: mongodb://localhost:27017
+        mongodb.connection.options: { connect: true }
+
+        # MongoDB session storage
+        session.storage_handler.mongodb.server: mongodb://localhost:27017
+        session.storage_handler.mongodb.options: { connect: true }
+    ```
+
 * create a table name `task_flow`
-* insert the following value for my test. and change it for your test.
+* I insert the following value for my test. change the values for your LS test.
 
     ```
 {
