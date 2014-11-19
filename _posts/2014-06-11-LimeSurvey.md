@@ -34,8 +34,45 @@ title: LimeSurvey local testing
 
 
 
-## Testing example (to be continued...)
-* 
+## Mongo DB
+* you need to have local mongo db running. if not, please refer to installation note in a different docuemnt to install it
+* and you need rockmongo as admin
+* on my local, I use `local` as the name of DB
+* create a table name `task_flow`
+* insert the following value for my test. and change it for your test.
+
+    ```
+{
+  "_id": ObjectId("53eb995504e835a603b938de"),
+  "comment": "Macy's 2014 Trim Survey",
+  "name": "Macy's 2014 Trim Survey",
+  "steps": [
+    {
+      "name": "survey",
+      "initParams": {
+        "surveyId": 92662
+      }
+    }
+  ]
+}
+    ```
+    
+    * the surveyId is the id from limesurvey db for the survey you want to test
+    * the objectid value will match the `flow_id` value in table `task_campaign`
+    * you will be able to find an existing survey name you want to test in `task_campaign` table
+    * make sure you update the `company_id` value in table `task` linked by `campaign_id` to match your testing login user's company
+    
+    
+## Testing (make sure you use your own survey url)
+
+* you updated the `company_id` in table `task` for your testing login user's company
+* update `state_current_step` to `survey` and `state_completed_steps_json` to `[]` and `state_compelted_at` to null and `first_compelted_at` to null.
+* you need to login as `role_social_admin`
+* if the survey has already been submitted, go to table `lime_survey_result` and look for `task_id` to match your test, set `compelted_at` to null. please use null instead of blank.
+* go to limesurvey db, update table `lime_tokens_74785` that the number is the survey number, set `usesleft` to `1` and `compelted` to `N`
+* go to limesurvey db, update table `lime_surveys_language` for survey id is 74785, set `surveyls_url` to `http://localhost/app_dev.php/sourcelink/task/support/survey/end?token={TOKEN}`
+* now you login and go to `http://localhost/app_dev.php/sourcelink/profile#tasks`, the task will be available for you to fillout.
+
 
 
 
