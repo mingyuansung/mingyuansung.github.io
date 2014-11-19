@@ -7,7 +7,7 @@ title: LimeSurvey local testing
 ## Install Our Modified LimeSurvey
 * Get the source from [our github](https://github.com/Source-Intelligence/LimeSurvey)
 * I copy the whole source structure under //EDEN/sf2/web so I can keep using my localhost url without setting vhost.  You can choose your own setup.
-* go to http://localhost/limesurvey/admin and follow the onscreen instrcutoin to create a DB on your local MySQL server.  I used the name `limesurvey3` and you can use something of your own. After completion, you will have a blank DB created in your local MySQL server.
+* go to http://localhost/limesurvey/admin and follow the onscreen instruction to create a DB in your local MySQL server.  I used the name `limesurvey3` and you can use anything of your own. After completion, you will have a blank DB created in your local MySQL server.
 * if you want to copy prod data, you can.  Just make sure to modify the follwoing.
     * you may want to keep your own `lime_users` record if you do not know prod user password. just make sure to update the uid in other tables for example `owner_id` in table `lime_surveys`     
     * `adminemail`, `bounce_email` value in the table `lime_survey`
