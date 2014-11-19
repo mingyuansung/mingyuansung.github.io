@@ -54,19 +54,19 @@ title: LimeSurvey local testing
 * I insert the following value for my test. change the values for your LS test.
 
     ```
-{
-  "_id": ObjectId("53eb995504e835a603b938de"),
-  "comment": "Macy's 2014 Trim Survey",
-  "name": "Macy's 2014 Trim Survey",
-  "steps": [
     {
-      "name": "survey",
-      "initParams": {
-        "surveyId": 92662
-      }
+      "_id": ObjectId("53eb995504e835a603b938de"),
+      "comment": "Macy's 2014 Trim Survey",
+      "name": "Macy's 2014 Trim Survey",
+      "steps": [
+        {
+          "name": "survey",
+          "initParams": {
+            "surveyId": 92662
+          }
+        }
+      ]
     }
-  ]
-}
     ```
     
     * the surveyId is the id from limesurvey db for the survey you want to test
