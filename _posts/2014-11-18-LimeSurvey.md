@@ -119,7 +119,7 @@ title: LimeSurvey local testing
 * Now I am ready to go back to `http://localhost/app_dev.php/sourcelink/profile#tasks` and click on the GO button to test the survey.
 
 
-##Here are a survey high level algorithm.
+##Here are a survey high level algorithm
 * When you login EDEN and if a lime survey is waiting for you, you click and go to for example: http://localhost/app_dev.php/sourcelink/task/support/campaign/4cbb8338-1a14-402f-abb5-513729e5caa1/participate
 * Then EDEN will forward you to http://localhost/app_dev.php/sourcelink/task/cm-data/370d7c72-2442-4aa9-b5c7-b0f2b2e992b7
 * This page will show you some some survey reason and you can click to enter the lime survey.
@@ -128,9 +128,9 @@ title: LimeSurvey local testing
 * EDEN will then update couple db content, then forward user again for example to http://localhost/app_dev.php/sourcelink/task/cm-data/370d7c72-2442-4aa9-b5c7-b0f2b2e992b7
 * Now this page will display a different content than above mentioned (you noticed this URL appears previously, right?).  
 * It will show you survey already completed.
-* Two important code:
-* TaskControllerListener.assertTaskAccessibility() to check if continue loadin the task or not.
-* ProfileRequestsController.openRequestsDataTable() to show the Active Reqeusts Section.
+* Two important piece of codes:
+* TaskControllerListener.assertTaskAccessibility() to check if continue loading the task or not.
+* ProfileRequestsController.openRequestsDataTable() to show the Active Reqeusts Section listing.
 
 
 
