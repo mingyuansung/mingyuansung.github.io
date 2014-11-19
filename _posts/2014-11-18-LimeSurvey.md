@@ -102,7 +102,7 @@ title: LimeSurvey local testing
     ```
 
 * at this moment, refresh `http://localhost/app_dev.php/sourcelink/profile#tasks` this survey task should be listed under Active Reqeusts section and GO button appears.
-* now I copy PRO limesurevey table `lime_survey_67574` and `lime_tokens_76574` to my local limesurvey db.
+* now I copy PROD limesurevey table `lime_survey_67574` and `lime_tokens_76574` to my local limesurvey db.
 * I go to my local `lime_tokens_67574` and look for token=e3f18f0ab3174b27978a11be77d57067 record. then I update this record `compelted` to "N" and `usedleft` to "1".
 * Now I am ready to go back to `http://localhost/app_dev.php/sourcelink/profile#tasks` and click on the GO button to test the survey.
 
