@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LimeSurvey local testing
+title: How I test LimeSurvey submssion
 ---
 
 
@@ -13,6 +13,15 @@ title: LimeSurvey local testing
     * `adminemail`, `bounce_email` value in the table `lime_survey`
     * `email` value in the table `lime_users` in case email send out to the world
     * `surveyls_url` in table `lime_surveys_languagesettings`. this is the end of survey auto forward url address. change to match your testing vhost.  For my own test, I use the value `http://localhost/app_dev.php/sourcelink/task/support/survey/end?token={TOKEN}`
+    * these are minimum needed tables:
+        * `lime_question_attributes`
+        * `lime_questions`
+        * `lime_groups`
+        * `lime_surveys`
+        * `lime_surveys_languagesettings`
+        * `lime_survey_{survey-id}`
+        * `lime_tokens_{survey-id}`
+        * `lime_users`
 * under EDEN parameters.yml here the changed value to match my directory and db setting:
 
     ```
