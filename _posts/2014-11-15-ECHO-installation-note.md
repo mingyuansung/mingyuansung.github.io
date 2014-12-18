@@ -18,6 +18,9 @@ title: ECHO Installation Guide after EDEN Installation
 * to manually start it you do:
 * `cd /usr/local/cellar/elasticsearch-0.19.12/0.19.12/bin`
 * `elasticsearch -f`
+* to make it automatically load when computer starts, you do:
+* `ln -sfv /usr/local/opt/elasticsearch-0.19.12/*.plist ~/Library/LaunchAgents`
+* `launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch-0.19.12.plist`
 * use this command to check elasticsearch process `ps ax | grep elastic | grep Cellar`
 
 ##3. Get ECHO source from Github
