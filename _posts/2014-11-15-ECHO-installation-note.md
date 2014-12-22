@@ -9,6 +9,7 @@ title: ECHO Installation Guide after EDEN Installation
 ##1. RabbitMQ
 
 * `brew install rabbitmq`
+* `locate rabbitmq-server` to find where is your rabbitmq installation, then start it for example on my own computer `sudo /usr/local/bin/rabbitmq-server -detached && rabbitmq_log`
 
 ##2 ElasticSearch
 
@@ -54,6 +55,13 @@ title: ECHO Installation Guide after EDEN Installation
 * to boot the server without compiling `java -jar server/target/echo-server-<version>.jar`
 * if want to put your applicaiotn yml at a different location and boot `java -jar -Dspring.config.location=/foo/bar/baz.yml server/target/echo-server-<version>.jar`
 * use this command to check the health `curl localhost:8080/manage/health`
+* `locate rabbitmq-server` to find where is your rabbitmq installation, then start it for example on my own computer `sudo /usr/local/bin/rabbitmq-server -detached && rabbitmq_log`
+
+## 9. Useful alias
+* alias rabbitmq_start='sudo /usr/local/bin/rabbitmq-server -detached && rabbitmq_log'
+* alias rabbitmq_stop='sudo /usr/local/bin/rabbitmqctl stop'
+* alias rabbitmq_restart='sudo /usr/local/bin/rabbitmqctl stop && /usr/local/bin/rabbitmq-server -detached && rabbitmq_log'
+
 
 
 
