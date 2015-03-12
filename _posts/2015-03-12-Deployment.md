@@ -27,7 +27,7 @@ title: DEV box deployment
 * pick the branch you want to release to DEV and answer all the questions
 * if your local computer account is the same as your account on DEV, you can just run `fab dev1` to target DEV1 release
 
-## Notes
+## Other
 
 * if you don't want to enter password again and again on DEV box, you can do:
     * on dev box `mkdir ~/.ssh`
