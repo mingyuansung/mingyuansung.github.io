@@ -10,16 +10,19 @@ title: DEV box deployment
     * 192.237.167.95  s44-devbox-1
     * 104.130.195.197 s44-devbox-2
 * check with your boss if you have no devs and sudo permission on DEV
-* `sudo easy_install pip`
-* `sudo pip install Fabric`
-* `fav --version` to verify your installation
-* `sudo pip install jsonpickle`
-* `sudo pip install props`
+* then do the following installations:
+    * `sudo easy_install pip`
+    * `sudo pip install Fabric`
+    * `fav --version` to verify your installation
+    * `sudo pip install jsonpickle`
+    * `sudo pip install props`
 * copy your local `//deploy/fabfile/props.dist.py` to be `//deploy/fabfile/props.py`
 
 ## Release directly on DEV box
+* login of course to the DEV box
 * `cd /srv/s44/eden`
 * `phing app:all`
+* answer all the questions
 
 
 ## Release from your local computer
