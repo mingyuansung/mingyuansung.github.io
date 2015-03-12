@@ -18,7 +18,7 @@ title: DEV box deployment
     * `sudo pip install props`
 * copy your local `//deploy/fabfile/props.dist.py` to be `//deploy/fabfile/props.py`
 
-## Release directly on DEV box
+## Release directly on the DEV box
 * login of course to the DEV box
 * `cd /srv/s44/eden`
 * `phing app:all`
