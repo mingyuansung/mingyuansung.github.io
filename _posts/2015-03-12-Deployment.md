@@ -23,6 +23,9 @@ title: DEV box deployment
 * `cd /srv/s44/eden`
 * `phing app:all`
 * answer all the questions
+* if the build seems to hang on installing vendors, `Ctrl+c` out, go to `releases/<your release>/sf2`, then run `composer install`
+* repeat if hangs and you will get through
+* go to vendor direcotry and do `df -h` to check if those numbers change to tell if the process hangs or not
 
 
 ## Release from your local computer
