@@ -293,6 +293,8 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     * `phpunit --configuration sf2/tests/phpunit.xml`
 * Try rebuilding the cache
     * `php sf2/app/console cache:clear`
+* Try to recompile Less
+    * `touch web/assets/Source44/less/base.less`
 * Start (or restart) apache and try visiting `www.sourceintelligence.local/app_dev.php` in your browser
 * To login (assuming you have populated local database with dev data)
     * Create a user via the app/console CLI - source44:user:create
