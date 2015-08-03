@@ -13,5 +13,3 @@ title: Style Guide
 * When prompt to login, use `s44styleguide / Source$$`
 
 
-### Download
-
