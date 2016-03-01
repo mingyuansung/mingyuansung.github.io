@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DOCKER EDEN, ECHO Installation extra other than Kevin's note
+title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 ---  
  
 ##0. Docker
@@ -57,10 +57,10 @@ title: DOCKER EDEN, ECHO Installation extra other than Kevin's note
 
 
 ## 9. Useful notes
-* you will need to populate MySQL DB content as well as MongoDB content
+* you will need to populate MySQL DB content as well as MongoDB content and make sure the DB name is `docker_eden`
 * alias docker_stop_all='docker stop $(docker ps -q)'
-* if you ever need to install, make sure you `docker-machine rm default` to remove the container, then go to VirtualBOx UI to delete the default machine, then start from docker installation
-* you can change your default VM to have 4 cores and 8GB ram, make things faster
+* if you ever need to reinstall, make sure you `docker-machine rm default` to remove the container, then go to VirtualBox UI to delete the default machine, then start from docker toolbox installation
+* you probably should change your default VM to have 4 cores and 8GB ram through VirtualBox UI, make things run faster
 
 
 
