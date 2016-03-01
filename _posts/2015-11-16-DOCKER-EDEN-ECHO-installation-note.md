@@ -61,6 +61,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * alias docker_stop_all='docker stop $(docker ps -q)'
 * if you ever need to reinstall, make sure you `docker-machine rm default` to remove the container, then go to VirtualBox UI to delete the default machine, then start from docker toolbox installation
 * you probably should change your default VM to have 4 cores and 8GB ram through VirtualBox UI, make things run faster
+* Keep smiling
 
 
 
