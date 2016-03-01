@@ -3,10 +3,10 @@ layout: post
 title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 ---  
  
-##0. Docker
+## 0. Docker
 * install [Docker Toolbox](https://www.docker.com/products/docker-toolbox) first
 
-##1. EDEN
+## 1. EDEN
 
 * get the latest master branch
 * `docker-machine start default` to start the container
@@ -17,7 +17,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 
 
 
-##2 ECHO
+## 2 ECHO
 
 * get the latest master branch
 * make sure you have Java 7 installed
@@ -28,7 +28,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * test it out: `curl localhost:8080/health`
 * you can also use the comand line: `java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev` make sure the jar name is the one you want to used
 
-##3. Switching between EDEN and ECHO Docker
+## 3. Switching between EDEN and ECHO Docker
 
 * you can run either or.  Not both at the same time
 * cd to either EDEN or ECHO directory
@@ -37,15 +37,15 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * then start the service you want to start
 * if you wan to use EDEN MySQL with ECHO or ECHO MySQL with EDEN, you do:
 
-    ```
+    ~~~~~~~~
         cd echo
         docker-dev up -d 
         docker-dev stop mysql
         cd ../eden
         docker-dev up -d mysql
-    ```
+    ~~~~~~~~
 
-## 8. Useful command
+## 4. Useful command
 * start php server: `php -S localhost:8000 -t EDEN/sf2/web/`
 * docker stop all: `docker stop $(docker ps -q)`
 * docker-machine ls
@@ -56,7 +56,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * docker-compose -f docker-dev.yml up -d mysql
 
 
-## 9. Useful notes
+## 5. Useful notes
 * you will need to populate MySQL DB content as well as MongoDB content and make sure the DB name is `docker_eden`
 * alias docker_stop_all='docker stop $(docker ps -q)'
 * if you ever need to reinstall, make sure you `docker-machine rm default` to remove the container, then go to VirtualBox UI to delete the default machine, then start from docker toolbox installation
@@ -65,14 +65,14 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * I am using [RoboMongo](https://robomongo.org/download) to manage MongoDB
 * Keep smiling
 
-## 10. My environment start up Script
+## 6. My environment start up Script
 * I use apple script to start my development environment
 * I created a file named sieden.scpt 
     
-    ```
+    ~~~~~~~~
 tell application "iTerm"		tell the current terminal		tell the current session			set name to "PHP_Server"			write text "green"			write text "php -S localhost:8000 -t EDEN/sf2/web/"		end tell	end tell		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"			write text "clear;docker-machine start default"			write text "title Docker_EDEN"			write text "docker-compose -f docker-fullstack.yml up"		end tell	end tell		delay 20		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title ECHO_Server"			write text "green"			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev"		end tell	end tell		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title WORK"			write text "cd EDEN;clear;git status"		end tell	end tellend tell
 
-    ```
+    ~~~~~~~~
 * Then in my `.profile` I put in the alias as `alias eden='osascript sieden.scpt'`
 * also define the color green as `alias green=' echo -n -e "\033]6;1;bg;green;brightness;213\a"'`
 * When computer bootup, I can open an [iterm](https://iterm2.com/), then type `eden` to start the environment for me. You can Ctrl-c out of each tab to restart for example PHP server, or stop command line ECHO for IntelliJ debugger or just use Docker ECHO.
