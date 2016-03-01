@@ -30,7 +30,7 @@ title: ECHO Installation Guide after EDEN Installation
 * copy `server/src/main/resources/config/application.dist.yml` to be `application.yml` and update the content depend on your own environment
 * Here is mine:
     
-    ```
+```
     echo:
     sql:
         username: s44admin
@@ -47,7 +47,7 @@ title: ECHO Installation Guide after EDEN Installation
     # autoCreateIndex: false
     properties:
         "path.logs": /usr/local/var/log/elasticsearch/client
-    ```
+```
 
 ## 8. Build and Test
 * `mvn clean install`

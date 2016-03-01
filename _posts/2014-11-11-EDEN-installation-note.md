@@ -17,7 +17,7 @@ title: Installation Guide (2014)
 * Check with Missy to grand you access to Enployee Policy, compnay directory, forms etc.  We use `Google Drive`
 * before we install everything, you can update your .profile to the following content. Make sure you modify to your own directory name.
     
-    ```
+```
         export ES_HOME=/usr/loca/elasticsearch
         export PATH=/opt/local/bin:/opt/local/sbin:/Users/mingsung/pear/bin:$ES_HONE/bin:$PATH
         source ~/.git-completion.bash
@@ -31,7 +31,7 @@ title: Installation Guide (2014)
         export MAVEN_OPTS="-Xms256m -Xmx1g -XX:PermSize=256M -XX:MaxPermSize=512M -XX:+CMSClassUnloadingEnabled"
         export PS1='\n[\u@\h] \[\e[0;32m\]\w\[\e[0m\] --- \d \t\n[\W$(__git_ps1 " (%s)")]\$'
         alias s44_latest_mysql_eden='scp msung@s44-buildbox-1:/srv/s44/backups/mysql/latest/s44_prod_eden.sql.gz /Users/mingsung/downloads/.'
-    ```
+```
 
 
 
@@ -58,7 +58,7 @@ title: Installation Guide (2014)
 * copy `parameters.dist.yml` to `parameters.yml` and update the file as needed later
 * in `/etc/hosts' file, create a localhost entry such as www.sourceintelligence.local and add others as:
 
-    ```
+```
     127.0.0.1	localhost www.sourceintelligence.local
     255.255.255.255	broadcasthost
     ::1             localhost
@@ -84,7 +84,7 @@ title: Installation Guide (2014)
     67.207.157.99   s44-loadbox-2
     67.207.155.132  s44-combox-1
     23.253.205.245  s44-loadbox-3
-    ```
+```
 * cd to your /EDEN/sf2/app directory
 * `sudo mkdir cache`
 * go to the newly creaed cache directory, `sudo mkdir dev`
@@ -112,7 +112,7 @@ title: Installation Guide (2014)
     * I am not sure if you need to modify httpd.conf to change your ServerName and DocumentRoot.  I did.     
     * MacPorts installations use `/opt/local/apache2/conf/extra/httpd-vhosts.conf`  
                 
-        ```  
+```  
         <VirtualHost *:80>
             ServerName www.sourceintelligence.local
             DocumentRoot "/fully/qualified/path/to/EDEN/sf2/web"
@@ -123,7 +123,7 @@ title: Installation Guide (2014)
             Allow from All
         </Directory>
         </VirtualHost>
-        ```
+```
     
 * Grant apache write permissions which we already did previously when we install GIT on app/logs and app/cache, see [tutorial](http://symfony.com/doc/2.1/book/installation.html#configuration-and-setup)
 
@@ -143,7 +143,7 @@ title: Installation Guide (2014)
         * at the end of the file add `Include conf/extra/mod_php.conf`
         * this is to let apache know how to process php file. Here is the content:
         
-        ```  
+```  
         <IfModule php5_module>
             AddType application/x-httpd-php .php
             AddType application/x-httpd-php-source .phps
@@ -152,16 +152,18 @@ title: Installation Guide (2014)
                 DirectoryIndex index.html index.php
             </IfModule>
         </IfModule>
-        ```
+        
+```
+
     * You may want to copy and symlink your php.ini
         * `sudo cp /opt/local/etc/php54/php.ini-development /opt/local/etc/php54/php.ini`
         * `sudo ln -s /opt/local/etc/php54/php.ini /etc/php.ini`
 * Install PHP extensions:
     * Via MacPorts:  
-    ```
+```
 sudo port install php54-apc php54-curl php54-iconv php54-intl
     php54-mbstring php54-mcrypt php54-mysql php54-openssl php54-posix php54-xdebug  
-    ```  
+```  
 * The following PECL/PEAR libraries should be installed (follow links for install docs):
     * [mongo](http://docs.mongodb.org/ecosystem/drivers/php/)
         * `brew install mongodb`
@@ -181,12 +183,12 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         * `sudo php -d detect_unicode=0 go-pear.phar`
         * You will prompted to specify config vars, we want to change #1 and #4.
 
-            ```
+```
                 Press 1 – Installation base ($prefix) – and enter:
                 /opt/local/lib/php54
                 Press 4 – Binaries directory – and enter:
                 /opt/local/bin
-            ```
+```
         
     * [symfony2/ClassLoader](http://pear.symfony.com/)
         * `sudo pear channel-discover pear.symfony.com`
@@ -211,13 +213,13 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
         * `sudo port install nodejs`
         * configure your /EDEN/sf2/app/config/parameters.yml file for the node location on your local computer.  I have to change the "node_paths:" location from the default file.
         
-            ```
+```
             [# Assetic LESS config (defaults work on Ubuntu)
             assetic.filters.less:
                 node: /usr/local/bin/node
                 node_paths: [/opt/local/lib/node_modules]
             //EDEN/sf2/app/config/parameters.yml  about line 12.
-            ```
+```
         * make sure you have the executable `node` in your //usr/local/bin directory. I have to copy from somewhere else.
     * npm
         * `sudo port install npm`
@@ -234,7 +236,7 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
     * increase the `memory_limit` to maybe `512M`
     * in a MacPorts installation add the following to the bottom of the file:  
         
-        ```
+```
         [xdebug]
             zend_extension_nts=/usr/lib/php/extensions/no-debug-non-zts-20100525/xdebug.so
             xdebug.auto_trace = 0

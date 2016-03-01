@@ -24,7 +24,7 @@ title: How I test LimeSurvey submssion
         * `lime_users`
 * under EDEN parameters.yml here the changed value to match my directory and db setting:
 
-    ```
+```
         lime_survey2.database_driver: pdo_mysql
         lime_survey2.database_host: 127.0.0.1
         lime_survey2.database_port:
@@ -38,8 +38,7 @@ title: How I test LimeSurvey submssion
 
         # Additional Lime Survey parameters
         lime_survey.getdoc_baseurl: http://localhost/limesurvey/s44_custom/getdoc.php
-        lime_survey.redirect_url: http://localhost/limesurvey/index.php
-    ```
+```
 
 
 
@@ -48,7 +47,7 @@ title: How I test LimeSurvey submssion
 * and you need rockmongo as admin UI or any other tools you are familiar with
 * on my computer, I use `local` as the name of DB (you can use whatever name) and setup your parameters.yml
 
-    ```
+```
         # MongoDB settings
         mongodb.database_name: local
         mongodb.connection.server: mongodb://localhost:27017
@@ -57,12 +56,12 @@ title: How I test LimeSurvey submssion
         # MongoDB session storage
         session.storage_handler.mongodb.server: mongodb://localhost:27017
         session.storage_handler.mongodb.options: { connect: true }
-    ```
+```
 
 * create a table name `task_flow`
 * I insert the following value for my test. change the values for your LS test.
 
-    ```
+```
     {
       "_id": ObjectId("53eb995504e835a603b938de"),
       "comment": "Macy's 2014 Trim Survey",
@@ -76,12 +75,12 @@ title: How I test LimeSurvey submssion
         }
       ]
     }
-    ```
+```
     
-    * the surveyId is the id from limesurvey db for the survey you want to test
-    * the objectid value will match the `flow_id` value in table `task_campaign`
-    * you will be able to find an existing survey name you want to test in `task_campaign` table
-    * make sure you update the `company_id` value in table `task` linked by `campaign_id` to match your testing login user's company
+* the surveyId is the id from limesurvey db for the survey you want to test
+* the objectid value will match the `flow_id` value in table `task_campaign`
+* you will be able to find an existing survey name you want to test in `task_campaign` table
+* make sure you update the `company_id` value in table `task` linked by `campaign_id` to match your testing login user's company
     
     
 ## Testing (make sure you use your own survey url)
@@ -106,7 +105,7 @@ title: How I test LimeSurvey submssion
 * from this record, I know the survey id is 67574 and token is e3f18f0ab3174b27978a11be77d57067. these values should match values in limesurvey db.
 * now you need an entry in mongo db under the task flow as follows.
 
-    ```
+```
     {
       "_id": ObjectId("542c64e204e835f22ce58d04"),
       "comment": "Macy's 2014 Conflict Minerals Policy Acknowledgement",
@@ -120,7 +119,7 @@ title: How I test LimeSurvey submssion
         }
       ]
     }
-    ```
+```
 
 * at this moment, refresh `http://localhost/app_dev.php/sourcelink/profile#tasks` this survey task should be listed under Active Reqeusts section and GO button appears.
 * now I copy PROD limesurevey table `lime_survey_67574` and `lime_tokens_76574` to my local limesurvey db.
