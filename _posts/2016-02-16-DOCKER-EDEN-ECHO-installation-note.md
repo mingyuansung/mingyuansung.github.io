@@ -17,7 +17,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 
 
 
-## 2 ECHO
+## 2. ECHO
 
 * get the latest master branch
 * make sure you have Java 7 installed
