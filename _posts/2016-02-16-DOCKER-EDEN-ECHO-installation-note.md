@@ -73,7 +73,8 @@ tell application "iTerm"		tell the current terminal		tell the current session
 
     ```
 * Then in my `.profile` I put in the alias as `alias eden='osascript sieden.scpt'`
-* Then after computer bootup, I can open an iterm, then type `eden` to start the environment for me
+* Then after computer bootup, I can open an iterm, then type `eden` to start the environment for me. YOu can Ctrl-c out of each tab to restart for example PHP server, or stop command line ECHO for IntelliJ debugger or just use Docker ECHO.
+* In order to do this, I will need to implement the local setting as Mike stated in the section `Optional Confiuration` in EDEN readme.
 
 
 
