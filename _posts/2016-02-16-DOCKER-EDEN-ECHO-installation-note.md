@@ -61,7 +61,8 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * alias docker_stop_all='docker stop $(docker ps -q)'
 * if you ever need to reinstall, make sure you `docker-machine rm default` to remove the container, then go to VirtualBox UI to delete the default machine, then start from docker toolbox installation
 * you probably should change your default VM to have 4 cores and 8GB ram through VirtualBox UI, make things run faster
-* Read [Mike's note](https://github.com/Source-Intelligence/svctemplate/wiki/Docker-Tips)
+* Read [Mike's note](https://github.com/Source-Intelligence/svctemplate/wiki/Docker-Tips) for some helpful alias and how to set up data container to preserve DB data
+* I am using [RoboMongo](https://robomongo.org/download) to manage MongoDB
 * Keep smiling
 
 ## 10. My environment start up Script
@@ -74,8 +75,8 @@ tell application "iTerm"		tell the current terminal		tell the current session
     ```
 * Then in my `.profile` I put in the alias as `alias eden='osascript sieden.scpt'`
 * also define the color green as `alias green=' echo -n -e "\033]6;1;bg;green;brightness;213\a"'`
-* When computer bootup, I can open an iterm, then type `eden` to start the environment for me. You can Ctrl-c out of each tab to restart for example PHP server, or stop command line ECHO for IntelliJ debugger or just use Docker ECHO.
-* In order to do this, you will need to implement the local setting as Mike stated in the section `Optional Confiuration` in EDEN readme to bypass Docker ECHO.
+* When computer bootup, I can open an [iterm](https://iterm2.com/), then type `eden` to start the environment for me. You can Ctrl-c out of each tab to restart for example PHP server, or stop command line ECHO for IntelliJ debugger or just use Docker ECHO.
+* In order to do this, you will need to implement the local setting as Mike stated in the section `Optional Confiuration` in [EDEN readme](https://github.com/Source-Intelligence/EDEN) to bypass Docker ECHO.
 
 
 
