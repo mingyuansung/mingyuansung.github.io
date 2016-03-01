@@ -31,8 +31,10 @@ title: DOCKER EDEN, ECHO Installation extra other than Kevin's note
 ##3. Switching between EDEN and ECHO Docker
 
 * you can run either or.  Not both at the same time
-* `docker stop $(docker ps -q)` stop all currently running images
+* cd to either EDEN or ECHO directory
 * `eval $(docker-machine env default --shell=bash)`
+* `docker stop $(docker ps -q)` stop all currently running images
+* then start the service you want to start
 
 ## 8. Useful command
 * start php server: `php -S localhost:8000 -t EDEN/sf2/web/`
