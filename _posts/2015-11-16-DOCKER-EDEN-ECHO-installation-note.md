@@ -12,7 +12,7 @@ title: DOCKER EDEN, ECHO Installation extra other than Kevin's note
 * `docker-machine start default` to start the container
 * `php -S localhost:8000 -t EDEN/sf2/web/` to start PHP server
 * `cd EDEN`
-* Make sure you have Mike’s []fullstack setup](https://github.com/mnichols1313/EDEN/commit/82334eaa58b7d48b62b14e4fe5cb04712d0e5766) downloaded to your EDEN directory
+* Make sure you have Mike’s [fullstack setup](https://github.com/mnichols1313/EDEN/commit/82334eaa58b7d48b62b14e4fe5cb04712d0e5766) downloaded to your EDEN directory
 * `docker-compose -f docker-fullstack.yml up` to bring down (update) needed images and start EDEN
 
 
