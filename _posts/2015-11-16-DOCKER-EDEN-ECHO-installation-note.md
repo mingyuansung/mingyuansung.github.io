@@ -6,7 +6,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 ##0. Docker
 * install [Docker Toolbox](https://www.docker.com/products/docker-toolbox) first
 
-##1. Eden
+##1. EDEN
 
 * get the latest master branch
 * `docker-machine start default` to start the container
@@ -17,7 +17,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 
 
 
-##2 Echo
+##2 ECHO
 
 * get the latest master branch
 * make sure you have Java 7 installed
