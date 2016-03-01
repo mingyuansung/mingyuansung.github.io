@@ -26,7 +26,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * build and test the project: `./gradlew build`
 * start the service: `./gradlew bootRun`
 * test it out: `curl localhost:8080/health`
-* you can also use the comand line: `java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.1.7-SNAPSHOT.jar --spring.profiles.active=dev`
+* you can also use the comand line: `java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev` make sure the jar name is the one you want to used
 
 ##3. Switching between EDEN and ECHO Docker
 
@@ -61,6 +61,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * alias docker_stop_all='docker stop $(docker ps -q)'
 * if you ever need to reinstall, make sure you `docker-machine rm default` to remove the container, then go to VirtualBox UI to delete the default machine, then start from docker toolbox installation
 * you probably should change your default VM to have 4 cores and 8GB ram through VirtualBox UI, make things run faster
+* Read [Mike's note](https://github.com/Source-Intelligence/svctemplate/wiki/Docker-Tips)
 * Keep smiling
 
 
