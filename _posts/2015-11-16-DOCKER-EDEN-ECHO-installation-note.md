@@ -35,6 +35,15 @@ title: DOCKER EDEN, ECHO Installation extra other than Kevin's note
 * `eval $(docker-machine env default --shell=bash)`
 * `docker stop $(docker ps -q)` stop all currently running images
 * then start the service you want to start
+* if you wan to use EDEN MySQL with ECHO or ECHO MySQL with EDEN, you do:
+
+    ```
+        cd echo
+        docker-dev up -d 
+        docker-dev stop mysql
+        cd ../eden
+        docker-dev up -d mysql
+    ```
 
 ## 8. Useful command
 * start php server: `php -S localhost:8000 -t EDEN/sf2/web/`
