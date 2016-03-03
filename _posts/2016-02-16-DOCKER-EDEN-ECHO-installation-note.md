@@ -80,6 +80,7 @@ tell application "iTerm"		tell the current terminal		tell the current session
 ## Run local EDEN with Docker Support and local ECHO
 
 * In order to do this, you will need to implement the local setting as Mike stated in the section `Optional Confiuration` in [EDEN readme](https://github.com/Source-Intelligence/EDEN) to bypass Docker ECHO.  Basically jsut create a new file  `parameters_local.yml` to tell ECHO is at your local.  And comment out ECHO server from docker setting from `parameters.yml`.
+* Put in `echo.stub: true` instead to use echo stub. 
 * Then start PHP server, then EDEN docker, then ECHO from either command line or from withing IntelliJ.  Just like the start up script I made ealier.
 * You can open EDEN and also ECHO project in IntelliJ and run debugger on both at the same time.
 
