@@ -51,9 +51,20 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * docker-machine ls
 * docker-machine restart default
 * docker-compose -f docker-dev.yml ps
-* docker-compose -f docker-dev.yml stop mysql
-* docker-compose -f docker-dev.yml rm mysql
-* docker-compose -f docker-dev.yml up -d mysql
+* to redownload for example MySQL image:
+
+```
+docker-compose -f docker-dev.yml stop mysql
+docker-compose -f docker-dev.yml rm mysql
+docker-compose -f docker-dev.yml up -d mysql
+```
+* to redownload all images
+
+```
+docker-compose -f docker-dev.yml stop
+docker-compose -f docker-dev.yml rm -f
+docker-compose -f docker-dev.yml up -d
+```
 
 
 ## 5. Useful notes
