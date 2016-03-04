@@ -5,6 +5,7 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
  
 ## 0. Docker
 * install [Docker Toolbox](https://www.docker.com/products/docker-toolbox) first
+* you may need to `docker login docker.sourceintelligence.net` with your own password
 
 ## 1. EDEN
 
