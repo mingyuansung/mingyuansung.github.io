@@ -78,10 +78,10 @@ docker-compose -f docker-dev.yml up -d
 * you probably should change your default VM to have 4 cores and 8GB ram through VirtualBox UI, make things run faster
 * Read [Mike's note](https://github.com/Source-Intelligence/svctemplate/wiki/Docker-Tips) for some helpful alias and how to set up data container to preserve DB data
 * I am using [RoboMongo](https://robomongo.org/download) to manage MongoDB
-* Keep smiling
+* On DEV server, `/srv/s44/echo/logs/echo-server.log` is the echo log and you can just scp it to your local and view.  I am doing `scp msung@s44-devbox-2:/srv/s44/echo/logs/echo-server.log /Users/mingsung/downloads/.`
 
 ## 6. My environment start up Script
-* I use apple script to start my development environment
+* I use apple script to start my development environment, sometimes I still need to stop , start, reset, etc. etc. after the script running. There all timing issues.
 * I created a file named sieden.scpt 
     
 ```
