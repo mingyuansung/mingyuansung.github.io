@@ -82,7 +82,7 @@ docker-compose -f docker-dev.yml up -d
 
 ## 6. My environment start up Script
 * I use apple script to start my development environment, sometimes I still need to stop , start, reset, etc. etc. after the script running. There all timing issues.
-* I created a file named sieden.scpt 
+* I created a file named sieden.scpt, use at your own risk: 
     
 ```
 tell application "iTerm"		tell the current terminal		tell the current session			set name to "PHP_Server"			write text "green"			write text "php -S localhost:8000 -t EDEN/sf2/web/"		end tell	end tell		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
