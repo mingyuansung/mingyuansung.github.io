@@ -39,13 +39,13 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after reading Kevin's note
 * then start the service you want to start
 * if you wan to use EDEN MySQL with ECHO or ECHO MySQL with EDEN, you do:
 
-	~~~
-        cd echo
-        docker-dev up -d 
-        docker-dev stop mysql
-        cd ../eden
-        docker-dev up -d mysql
-	~~~
+~~~
+    cd echo
+    docker-dev up -d 
+    docker-dev stop mysql
+    cd ../eden
+    docker-dev up -d mysql
+~~~
 * you can do the same thing for all the other supporting docker images for example mongodb, etc.
 * if you want to run EDEN and ECHO at the same time, you will have to start ECHO either from command line or from withing intelliJ
 
