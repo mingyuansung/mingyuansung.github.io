@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
+title: 2016 DOCKER EDEN, ECHO Installation extra after reading Kevin's note
 ---  
  
 ## 0. Docker
@@ -39,13 +39,13 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after Kevin's note
 * then start the service you want to start
 * if you wan to use EDEN MySQL with ECHO or ECHO MySQL with EDEN, you do:
 
-~~~
+	~~~
         cd echo
         docker-dev up -d 
         docker-dev stop mysql
         cd ../eden
         docker-dev up -d mysql
-~~~
+	~~~
 * you can do the same thing for all the other supporting docker images for example mongodb, etc.
 * if you want to run EDEN and ECHO at the same time, you will have to start ECHO either from command line or from withing intelliJ
 
@@ -85,8 +85,57 @@ docker-compose -f docker-dev.yml up -d
 * I created a file named sieden.scpt, use at your own risk: 
     
 ```
-tell application "iTerm"		tell the current terminal		tell the current session			set name to "PHP_Server"			write text "green"			write text "php -S localhost:8000 -t EDEN/sf2/web/"		end tell	end tell		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
-			write text "clear;eval $(docker-machine env default --shell=bash)"			write text "clear;docker stop $(docker ps -q)"			write text "clear;docker-machine start default"			write text "clear;docker-machine start default"			write text "title Docker_EDEN"			write text "docker-compose -f docker-fullstack.yml up"		end tell	end tell		delay 25		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title ECHO_Server"			write text "green"			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev"		end tell	end tell		make new terminal	tell the current terminal		activate current session		launch session "Default Session"		tell the last session			write text "title WORK"			write text "cd EDEN;clear;git status"		end tell	end tellend tell
+tell application "iTerm"
+	
+	tell the current terminal
+		tell the current session
+			set name to "PHP_Server"
+			write text "green"
+			write text "php -S localhost:8000 -t EDEN/sf2/web/"
+		end tell
+	end tell
+	
+	make new terminal
+	tell the current terminal
+		activate current session
+		launch session "Default Session"
+		tell the last session
+			write text "title Docker_EDEN"
+			write text "green"
+			write text "cd ~/EDEN"
+			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
+			write text "clear;eval $(docker-machine env default --shell=bash)"
+			write text "clear;docker stop $(docker ps -q)"
+			write text "clear;docker-machine start default"
+			write text "clear;docker-machine start default"
+			write text "title Docker_EDEN"
+			write text "docker-compose -f docker-fullstack.yml up"
+		end tell
+	end tell
+	
+	delay 25
+	
+	make new terminal
+	tell the current terminal
+		activate current session
+		launch session "Default Session"
+		tell the last session
+			write text "title ECHO_Server"
+			write text "green"
+			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev"
+		end tell
+	end tell
+	
+	make new terminal
+	tell the current terminal
+		activate current session
+		launch session "Default Session"
+		tell the last session
+			write text "title WORK"
+			write text "cd EDEN;clear;git status"
+		end tell
+	end tell
+end tell
 
 ```
 * Then in my `.profile` I put in the alias as `alias eden='osascript sieden.scpt'`
