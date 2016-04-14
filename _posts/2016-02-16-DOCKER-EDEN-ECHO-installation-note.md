@@ -100,17 +100,7 @@ tell application "iTerm"
 		activate current session
 		launch session "Default Session"
 		tell the last session
-			write text "title Docker_EDEN"
-			write text "green"
-			write text "cd ~/EDEN"
-			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
-			write text "clear;eval $(docker-machine env default --shell=bash)"
-			write text "clear;docker stop $(docker ps -q)"
-			write text "clear;docker-machine start default"
-			write text "clear;docker-machine start default"
-			write text "title Docker_EDEN"
-			write text "docker-compose -f docker-fullstack.yml up"
-		end tell
+			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"			write text "clear"			write text "title Docker_EDEN"			write text "docker-machine restart default"			write text "eval $(docker-machine env default --shell=bash)"			write text "docker-compose -f docker-fullstack.yml up"		end tell
 	end tell
 	
 	delay 25
@@ -122,7 +112,7 @@ tell application "iTerm"
 		tell the last session
 			write text "title ECHO_Server"
 			write text "green"
-			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev"
+			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.3.2-SNAPSHOT.jar --spring.profiles.active=dev"
 		end tell
 	end tell
 	
