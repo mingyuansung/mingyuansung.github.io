@@ -6,6 +6,8 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after reading Kevin's note
 ## 0. Docker
 * install [Docker Toolbox](https://www.docker.com/products/docker-toolbox) first
 * you may need to `docker login docker.sourceintelligence.net` with your own password
+* put the following alias in you profile: 
+`alias docker-dev='docker-compose -f docker-dev.yml $([ -f docker-compose.yml ] && echo -n ''-f docker-compose.yml'')'`
 
 ## 1. EDEN
 
@@ -13,8 +15,23 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after reading Kevin's note
 * cd to your EDEN directory
 * `docker-machine start default` to start the default docker machine
 * start a PHP server at a differnt terminal session `php -S localhost:8000 -t EDEN/sf2/web/`
-* Make sure you have Mike’s [fullstack setup](https://github.com/mnichols1313/EDEN/commit/82334eaa58b7d48b62b14e4fe5cb04712d0e5766) downloaded to your EDEN directory
-* `docker-compose -f docker-fullstack.yml up` to bring down (update) needed docker images supporting EDEN operation
+* in EDEN home directory, create a file named `docker-compose.yml` with the content:
+
+```
+version: '2'
+services:
+  mysql:
+    volumes_from:
+    - 'container:mysql-data'
+  mongodb:
+    volumes_from:
+    - 'container:mongodb-data'
+  elasticsearch:
+    volumes_from:
+    - 'container:elasticsearch-data'
+    
+```
+* `docker-dev up -d` to bring down (update) needed docker images supporting EDEN operation and start them
 * you are done
 
 
@@ -22,34 +39,23 @@ title: 2016 DOCKER EDEN, ECHO Installation extra after reading Kevin's note
 ## 2. ECHO
 
 * get the latest ECHO master branch
-* make sure you have Java 7 installed
+* make sure you have Java 8 installed
 * cd to your ECHO directory
 * bring docker service dependencies online with `docker-compose -f docker-dev.yml up -d`
 * build and test the project: `./gradlew build`
 * start the ECHO server service: `./gradlew bootRun`
 * test it out: `curl localhost:8080/health`
-* you can also use the comand line to start ECHO server: `java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.2.1-SNAPSHOT.jar --spring.profiles.active=dev` make sure the jar name is the one you want to use
+* you can also use the comand line to start ECHO server: `java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.3.4-SNAPSHOT.jar --spring.profiles.active=dev` make sure the jar name is the one you want to use
 
-## 3. Switching between EDEN and ECHO Docker
+## 3. Run EDEN with local ECHO
 
-* you can run either or.  Not both at the same time because their Docker supporting images will compete for the same network port
-* cd to either EDEN or ECHO directory
-* `eval $(docker-machine env default --shell=bash)`
-* `docker stop $(docker ps -q)` stop all currently running images
-* then start the service you want to start
-* if you wan to use EDEN MySQL with ECHO or ECHO MySQL with EDEN, you do:
+* with EDEN started with all supporting docker images, you do `docker stop eden_echo_1` to stop the echo docker image
+* make sure your EDEN parameters_local.yml has the echo server point to stub or localhost
+* Start your local ECHO or run ECHO from intelliJ
 
-~~~
-    cd echo
-    docker-dev up -d 
-    docker-dev stop mysql
-    cd ../eden
-    docker-dev up -d mysql
-~~~
-* you can do the same thing for all the other supporting docker images for example mongodb, etc.
-* if you want to run EDEN and ECHO at the same time, you will have to start ECHO either from command line or from withing intelliJ
 
 ## 4. Useful command
+
 * start php server: `php -S localhost:8000 -t EDEN/sf2/web/`
 * docker stop all: `docker stop $(docker ps -q)`
 * docker-machine ls
@@ -69,7 +75,15 @@ docker-compose -f docker-dev.yml stop
 docker-compose -f docker-dev.yml rm -f
 docker-compose -f docker-dev.yml up -d
 ```
-
+* docker-dev up -d : Starts the things listed in the local docker-dev.yml
+* docker-dev ps : Shows you what is running in docker container
+* docker-dev up -d echo : Starts echo in docker container
+* docker-dev stop echo : Stops echo in docker container
+* docker-dev logs echo : Shows the stdout from echo
+* docker-dev logs : Shows the stdout from all running images in container
+* docker-dev stop : Stops all images in container
+* docker ps -a : lists all the containers
+   
 
 ## 5. Useful notes
 * you will need to populate MySQL DB content as well as MongoDB content and make sure the DB name is `docker_eden`
@@ -100,7 +114,8 @@ tell application "iTerm"
 		activate current session
 		launch session "Default Session"
 		tell the last session
-			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"			write text "clear"			write text "title Docker_EDEN"			write text "docker-machine restart default"			write text "eval $(docker-machine env default --shell=bash)"			write text "docker-compose -f docker-fullstack.yml up"		end tell
+			write text "title Docker_EDEN"			write text "green"			write text "cd ~/EDEN"			write text "bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"			write text "clear"			write text "docker-machine restart default"			write text "eval $(docker-machine env default --shell=bash)"			write text "docker-dev up -d"			write text "docker stop eden_echo_1"
+			write text "docker-dev logs"					end tell
 	end tell
 	
 	delay 25
@@ -112,7 +127,7 @@ tell application "iTerm"
 		tell the last session
 			write text "title ECHO_Server"
 			write text "green"
-			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.3.2-SNAPSHOT.jar --spring.profiles.active=dev"
+			write text "cd ~/ECHO ; java -jar -Xms1500m -Xmx1500m -XX:MaxPermSize=200m echo-server/build/libs/echo-server-3.3.4-SNAPSHOT.jar --spring.profiles.active=dev"
 		end tell
 	end tell
 	
