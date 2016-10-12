@@ -4,6 +4,43 @@ title: DEV box deployment
 ---
 
 
+## 2016 way to release
+
+Make sure you have the folling in your `~/.ssh/config` for our dev servers definition
+
+```
+Host dev01
+  User dev01
+  HostName controller01-sfo1-do.sourceintelligence.net
+  ForwardAgent yes
+Host dev02
+  User dev02
+  HostName controller01-sfo1-do.sourceintelligence.net
+  ForwardAgent yes
+Host dev03
+  User dev03
+  HostName controller01-sfo1-do.sourceintelligence.net
+  ForwardAgent yes
+```
+
+1. merge your branch into master or use your branch
+2. fetch the master branch to your local machine (`git fetch SI`)
+3. create whatever tag you want (`git tag tagname`)
+4. push a tag (`git push SI tagname`)
+5. watch for the build status of your tag in #dockerhub 
+6. `ssh dev03` or the other
+7. edit `docker-compose.overrride.yml`, specify the new tag, save the change
+8. `docker-compose up -d` or you can just `docker-compose up -d eden`
+9. watch the log for the deploy to finish `docker logs -f dev03_eden_1`
+
+
+
+
+
+---
+## Before 2016
+---
+
 ## Preparation Job for releasing from your local
 * clone to your desktop from https://github.com/source-intelligence/deploy.git
 * check your /etc/hosts to have these entries and verify your DEV access:
