@@ -4,7 +4,7 @@ title: DEV box deployment
 ---
 
 
-## 2016 way to release
+## 2016 Docker way to release
 
 Make sure you have the folling in your `~/.ssh/config` for our dev servers definition
 
