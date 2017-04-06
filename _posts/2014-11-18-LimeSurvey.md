@@ -3,6 +3,24 @@ layout: post
 title: How I test LimeSurvey submssion
 ---
 
+* PM create survey within Limesurvey
+    * Limesurvey is in Docker container now.
+    * use `docker-compose ps` to get your docker limesurvey ip     
+    * on DEV1, `https://dev-svc-1-survey.sourceintelligence.net/admin/` adn admin and regular admin paswd.
+    * on your local, `http://boot2docker:8001/admin`. You can update the admin id email and paswd in `docker_ls2` table. 
+* PM give a spreadsheet of survey field definition with score definition to Mike. You can ask either Mike or Broke to get a copy of that spreadsheet.
+* Mike enters them (using his own script) to EDEN DB, especially score definitions.  `survey2_*` tables.
+* User filled in survey, after submittion, Limesurvey store data in its own DB, ECHO put all data in Mongo, some definition in EDEN. `survey2_*` tables.
+* When customer go to EDEN Intelligence page, survey result can be view there with score.
+* When the survey page loaded there, EDEN calls ECHO to pull data from Mongo and calculate score on the fly based on score definition in EDEN db. Score data not saved, just calculated for display and export purpose.
+
+
+<!---->![Dev Setting](https://mingyuansung.github.io/graphic/<!---->BridgeKeepr_Dev_Setting.png)
+
+--
+
+## BEFORE 2017
+--
 
 ## Install Our Modified LimeSurvey
 * Get the source from [our github](https://github.com/Source-Intelligence/LimeSurvey)
