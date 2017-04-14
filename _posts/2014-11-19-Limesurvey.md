@@ -9,9 +9,13 @@ title: How I test LimeSurvey submssion
     * on DEV1, `https://dev-svc-1-survey.sourceintelligence.net/admin/` adn admin and regular admin paswd.
     * on your local, `http://boot2docker:8001/admin`. You can update the admin id email and paswd in `docker_ls2` table.
     * use this command to copy dev1 mongo eden content to your local computer, then you can load it into your docker mongo or whatever. `docker run -it --rm -v $PWD/dump:/root/dump docker.sourceintelligence.net/mongo:2.6 mongodump --host dev-1.node.us-west-2.s44 --db docker_eden` You have to run it under docker environment of course, for example the environment you start up the container.
-    * use `bsondump collection.bson > collection.json` to convert the download to json if you need.  YOu need to have local mongo installation to have bsondump.
+    * use `bsondump collection.bson > collection.json` to convert the download to json if you need.  You need to have local mongo installation to have bsondump.
 * PM give a spreadsheet of survey field definition with score definition to Mike. You can ask either Mike or Broke to get a copy of that spreadsheet.
-* Mike enters them (using his own script) to EDEN DB, especially score definitions.  `survey2_*` tables.
+* Mike enters them (using ECHO script) to EDEN DB, especially score definitions.  `survey2_*` tables. Mike run command (ECHO) to import the survey from limesurvey to mongo and EDEN DB. These are the survey2_* tables in EDEN db.
+    * do `docker exec -it dev1_echo_1 /bin/bash` to switch your self to echo container
+    * do `curl localhost:8080/survey` to display a list of available APIs
+    * the one we need is `localhost:8080/survey/provider/{customerCompanyId}/{providerName whihc is LS2}/{providerId which is the survey id}`, then data will be ported into EDEN survey2_* tables.
+    * For self_assessment fields, not sure we will update the ECHO script or we can manually update the DB content. ECHO PR #241 would explain the self assessment fields.    
 * User filled in survey, after submittion, Limesurvey store data in its own DB, ECHO put all data in Mongo, some definition in EDEN. `survey2_*` tables.
 * When customer go to EDEN Intelligence page, survey result can be view there with score.
 * When the survey page loaded there, EDEN calls ECHO to pull data from Mongo and calculate score on the fly based on score definition in EDEN db. Score data not saved, just calculated for display and export purpose.
