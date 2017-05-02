@@ -13,7 +13,7 @@ title: How I test LimeSurvey submssion
 * PM give a spreadsheet of survey field definition with score definition to Mike. You can ask either Mike or Broke to get a copy of that spreadsheet.
 * Mike enters them (using ECHO script) to EDEN DB, especially score definitions.  `survey2_*` tables. Mike run command (ECHO) to import the survey from limesurvey to mongo and EDEN DB. These are the survey2_* tables in EDEN db.
     * do `docker exec -it dev1_echo_1 /bin/bash` to switch your self to echo container
-    * do `curl localhost:8080/survey` to display a list of available APIs.  We need to run 2. 1st to generate survey2 records, 2nd to generate all the assessment and expression records.
+    * do `curl localhost:8080/survey` to display a list of available APIs.  We need to run 2. 1st to generate survey2 records by survey import api, 2nd to generate all the assessment and expression records by assessment creation api.
     * the 1st one we need is `localhost:8080/survey/provider/{customerCompanyId}/{providerName whihc is LS2}/{providerId which is the survey id}`, then data will be ported into EDEN survey2_* tables.
     * The 2nd one, for self_assessment fields, Mike already updated the ECHO API to support it.
     * `curl -X POST -H "Content-Type: application/json" -d '{"name":"Results","isActive":"true","isLowerBetter":"false","ignoreUnansweredQuestions":"true","numDecimalPlaces":"1"}' localhost:8080/survey/LS2/674424/assessment`
