@@ -3,7 +3,7 @@ layout: post
 title: How I test LimeSurvey submssion
 ---
 
-From Mike:
+## From Mike:
 
 Let me preface this with the fact that Kevin will have many improvements to this process if he is able to help.  All of this can be done more easily if we invest some time into better admin tools and/or survey support. This was what I was doing as a work-around.
 
@@ -27,7 +27,7 @@ Let me preface this with the fact that Kevin will have many improvements to this
 	* Token based persistence - all surveys should use token based persistence. A token table will be created when you activate the survey
 	* If the token is not active, you will get an error when you attempt to start a survey task.
 
---
+-----
 
 * PM create survey within Limesurvey
     * Limesurvey is in Docker container now.
@@ -54,10 +54,10 @@ Let me preface this with the fact that Kevin will have many improvements to this
 
 <!---->![Dev Setting](https://mingyuansung.github.io/graphic/<!---->BridgeKeepr_Dev_Setting.png)
 
---
+---
 
 ## BEFORE 2017
---
+---
 
 ## Install Our Modified LimeSurvey
 * Get the source from [our github](https://github.com/Source-Intelligence/LimeSurvey)
@@ -182,7 +182,7 @@ Let me preface this with the fact that Kevin will have many improvements to this
 * Now I am ready to go back to `http://localhost/app_dev.php/sourcelink/profile#tasks` and click on the GO button to test the survey.
 
 
-##Here are a survey high level algorithm
+## Here are a survey high level algorithm
 * When you login EDEN and if a lime survey is waiting for you, you click and go to for example: http://localhost/app_dev.php/sourcelink/task/support/campaign/4cbb8338-1a14-402f-abb5-513729e5caa1/participate
 * Then EDEN will forward you to http://localhost/app_dev.php/sourcelink/task/cm-data/370d7c72-2442-4aa9-b5c7-b0f2b2e992b7
 * This page will show you some some survey reason and you can click to enter the lime survey.
