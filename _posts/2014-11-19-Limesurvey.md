@@ -3,6 +3,32 @@ layout: post
 title: How I test LimeSurvey submssion
 ---
 
+From Mike:
+
+Let me preface this with the fact that Kevin will have many improvements to this process if he is able to help.  All of this can be done more easily if we invest some time into better admin tools and/or survey support. This was what I was doing as a work-around.
+
+* Port the survey from Prod to DEV for testing.  No need to do anything on Prod.
+* Run survey creation ECHO API on ECHO Server.  This need to be done on Prod when ready.
+* Create an assessment if there is one. 
+	* I typically export the questions from LimeSurvey and concatenate the question group and question title to create a platform agnostic identifier. The export should include all the answer options. These go into a google doc that can be shared with the PM. See https://docs.google.com/spreadsheets/u/1/d/1enhe7ex1Bk-SXkDf0dRHzPqSvbgDRltUZgQpQ3CY1YA/edit?usp=drive_web
+	* Most assessments only require statement expressions with the following:
+		* The survey2_question_id
+		* Point value
+		* Type (See SurveyStatementExpression.Type)
+		* An operator (See SurveyStatementExpression.Operator)
+		* An operand (the value to compare e.g. the answer)
+	* Create a lookup using the identifier created with the question group and the question title to lookup the survey2 ID. You will need these for dev and prod envs.
+	* Once you have the data you need for the assessment, you can export the csv and use the tool in misc/tools/limesurvey2/assessment to create the JSON blob you can import into echo
+	* Use the ECHO API to import the assessment
+	* An assessment that has no expressions e.g. no possible points, will render a datatable without the dashboard that shows scores.
+* Create a survey tag - see the ECHO API for tags - tags are what make the survey visible in the intelligence section.
+* Always review the survey config in the LS admin to make sure the settings are correct. See other active surveys for examples. Things like:
+	* Redirect URL - this is what triggers the import into eden/echo
+	* Token based persistence - all surveys should use token based persistence. A token table will be created when you activate the survey
+	* If the token is not active, you will get an error when you attempt to start a survey task.
+
+--
+
 * PM create survey within Limesurvey
     * Limesurvey is in Docker container now.
     * use `docker-compose ps` to get your docker limesurvey ip     
