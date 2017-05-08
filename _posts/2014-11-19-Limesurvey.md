@@ -17,7 +17,9 @@ title: How I test LimeSurvey submssion
     * the 1st one we need is `localhost:8080/survey/provider/{customerCompanyId}/{providerName whihc is LS2}/{providerId which is the survey id}`, then data will be ported into EDEN survey2_* tables.
     * The 2nd one, for self_assessment fields, Mike already updated the ECHO API to support it.
     * `curl -X POST -H "Content-Type: application/json" -d '{"name":"Results","isActive":"true","isLowerBetter":"false","ignoreUnansweredQuestions":"true","numDecimalPlaces":"1"}' localhost:8080/survey/LS2/674424/assessment`
-    * ECHO PR #241 would explain the self assessment fields.    
+    * ECHO PR #241 would explain the self assessment fields.  
+* Here is the sampel to use ECHO API to create survey tag for survey 462943 pre AWS era:
+    * `curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Simple Test"}' localhost:8080/survey/LS2/462943/tag`   
 * User filled in survey, after submittion, Limesurvey store data in its own DB, ECHO put all data in Mongo, some definition in EDEN. `survey2_*` tables.
 * When customer go to EDEN Intelligence page, survey result can be view there with score.
 * When the survey page loaded there, EDEN calls ECHO to pull data from Mongo and calculate score on the fly based on score definition in EDEN db. Score data not saved, just calculated for display and export purpose.
