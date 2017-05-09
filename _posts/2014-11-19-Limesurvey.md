@@ -65,6 +65,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"C
 * Here is to deploy to prod:
 	
 	```
+	connect vpn
 	ssh -p 2200 deploy@swarmctl.query.s44
 	docker exec -it echo_server_a_1 bash
 	```
