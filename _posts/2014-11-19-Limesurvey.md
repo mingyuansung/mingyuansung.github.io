@@ -50,8 +50,25 @@ Let me preface this with the fact that Kevin will have many improvements to this
 * When customer go to EDEN Intelligence page, survey result can be view there with score.
 * When the survey page loaded there, EDEN calls ECHO to pull data from Mongo and calculate score on the fly based on score definition in EDEN db. Score data not saved, just calculated for display and export purpose.
 * Here is the prod limesurvey site: `http://survey2.sourceintelligence.net/admin/`
+* Here are the 8 commands I ran to re-create Macy's survey tags:
 
-
+	```
+curl -X DELETE localhost:8080/survey/tag/6
+curl -X DELETE localhost:8080/survey/tag/14
+curl -X DELETE localhost:8080/survey/tag/17
+curl -X DELETE localhost:8080/survey/tag/18
+curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Trim Survey"}' localhost:8080/survey/LS2/774668/tag
+curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Trim Survey"}' localhost:8080/survey/LS2/984933/tag
+curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"CM Policy"}' localhost:8080/survey/LS2/67574/tag
+curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"CM Policy"}' localhost:8080/survey/LS2/74785/tag
+	```
+* Here is to deploy to prod:
+	
+	```
+	ssh -p 2200 deploy@swarmctl.query.s44
+	docker exec -it echo_server_a_1 bash
+	```
+	
 <!---->![Dev Setting](https://mingyuansung.github.io/graphic/<!---->BridgeKeepr_Dev_Setting.png)
 
 ---
