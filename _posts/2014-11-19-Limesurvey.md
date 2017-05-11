@@ -70,6 +70,37 @@ curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"C
 	docker exec -it echo_server_a_1 bash
 	```
 	
+---
+
+## The survey deployment process
+
+* Get the node scripts from source control //MISC/tools/limesurvey2/assessment directory
+* The needed files are index.js, package.json
+* This is node applicaiton, so you need to install node
+* There are 2 node library modules need to install `sudo npm install fast-csv --save` and `sudo npm install jsonfiles --save`
+* You need to build expressions.csv similiar as the one in the source control.
+* Update index.js content for the survey name and the environment variable between dev and prod.
+* Then run `node index.js`, it will generated the assessment json for you to use when run ECHO API.  Those json files in the source control are example samples.
+* Once you have all the json needed, you need to run ECHO API on the ECHO server.
+* Here is how to get youself to dev echo docker container to deploy to dev-1:
+	
+	```
+	connect vpn
+	ssh dev-1
+	docker exec -it dev1_echo_1 /bin/bash 
+	```
+* Here is to get yourself to prod echo docker container to deploy to prod:
+	
+	```
+	connect vpn
+	ssh -p 2200 deploy@swarmctl.query.s44
+	docker exec -it echo_server_a_1 bash
+	```
+* Then first step you need to import survey, for example `curl localhost:8080/survey/provider/19939/LS2/774668`
+* Then second step is to create assessment if the target survey has any assessment defined.  If there's none, then you are done this step.  No need to run this step. The API command for example `curl -X POST -H "Content-Type: application/json" -d '{"name":"Results","isActive":"true","isLowerBetter":"false","ignoreUnansweredQuestions":"true","numDecimalPlaces":"1"}' localhost:8080/survey/LS2/774668/assessment` or load a json file you previously created if the json is too long to type.
+* Then finally the third and last step is to create survey tag for example `curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Trim Survey"}' localhost:8080/survey/LS2/774668/tag`
+ 
+---
 <!---->![Dev Setting](https://mingyuansung.github.io/graphic/<!---->BridgeKeepr_Dev_Setting.png)
 
 ---
