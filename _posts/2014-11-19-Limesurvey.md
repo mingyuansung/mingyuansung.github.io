@@ -31,8 +31,8 @@ Let me preface this with the fact that Kevin will have many improvements to this
 
 ## The whole survey process end to end
 
-* PM create servey on Prod Limsurvey server
-* When PM done, we go to Prod Limesyrvey server and eport this very survey.
+* PM create survey on Prod Limsurvey server
+* When PM done, we go to Prod Limesyrvey server and export this very survey.
 * Then import the survey to dev limsurvey server.
 * Check the redirect URL, active the survey using token based persistence on the dev Limesurvey server.
 * Generate all the needed json files for next step. 
