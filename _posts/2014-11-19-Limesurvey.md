@@ -27,9 +27,92 @@ Let me preface this with the fact that Kevin will have many improvements to this
 	* Token based persistence - all surveys should use token based persistence. A token table will be created when you activate the survey
 	* If the token is not active, you will get an error when you attempt to start a survey task.
 
------
+---
 
-* PM create survey within Limesurvey
+## The whole survey process end to end
+
+* PM create servey on Prod Limsurvey server
+* When PM done, we go to Prod Limesyrvey server and eport this very survey.
+* Then import the survey to dev limsurvey server.
+* Check the redirect URL, active the survey using token based persistence on the dev Limesurvey server.
+* Generate all the needed json files for next step. 
+* Use the ECHO API to import survey data into EDEN DB.
+* Ask PM to test the survey.
+* When it's done.  Do the same procedures to Prod.
+
+## How to prepare the needed ECHO API json file generation?
+  
+* Use the query for example to get some data from Limesurvey DB: 
+
+	```
+	select  
+	CONCAT(survey.surveyls_title, ':', question.title) as questionKey, question.qid as questionId
+from lime_questions question
+left join lime_surveys_languagesettings survey on question.sid=survey.surveyls_survey_id 
+where survey.surveyls_survey_id in ('163428', '515636', '674424', '752797', '761912', '765349')
+order by questionKey
+	```
+* Export this generated data and import to a new google spreadsheet as "dev-1 question lookup" tab similiar to the file [here] (https://docs.google.com/spreadsheets/u/1/d/1enhe7ex1Bk-SXkDf0dRHzPqSvbgDRltUZgQpQ3CY1YA/edit?usp=drive_web) 	
+	
+* Use the query for example to get some data from Limesurvey DB: 
+
+	```
+	select survey.surveyls_title as surveyName, question.title as questionTitle, 
+	CONCAT(survey.surveyls_title, ':', question.title) as questionKey
+from lime_questions question
+left join lime_surveys_languagesettings survey on question.sid=survey.surveyls_survey_id 
+where survey.surveyls_survey_id in ('163428', '515636', '674424', '752797', '761912', '765349')
+order by questionKey
+	```
+	
+* Insert the generated data to a new tab in the previous file for example you can take a look at this file [here] (https://docs.google.com/spreadsheets/u/1/d/1enhe7ex1Bk-SXkDf0dRHzPqSvbgDRltUZgQpQ3CY1YA/edit?usp=drive_web) Make sure you use the same column headers since they are needed later on to run the node script and copy the function inside the cell. In this example, fill in value "1" for the column "scoreMultiplier" and "points" and fill in value "SELF_ASSESSMENT" for the column "type" and "operand".  These values are for self assessment typed question, in different survey, PM need to supply the values.  The column "minScore" and "maxScore" are for PM to fill in.  Use "N/A" if not a value field.  Copy the function `=VLOOKUP(C2,'dev-1 question lookup'!A:B,2,false)` to cells under "dev1ProviderQuestionId" and the id will be filled in by the function.  You will need to do the same for Prod data.
+* Shared the google spreadsheet with the PM in order to fill out the min and max value if needed.
+* After all value filled in, the 1st tab can be generated into a csv file similiar to //MISC/tools/limesurvey2/assessment/expressions.csv
+
+  
+## The ECHO API Survey deployment process
+
+* Get the node scripts from source control //MISC/tools/limesurvey2/assessment directory
+* The needed files are index.js, package.json
+* This is node applicaiton, so you need to install node
+* There are 2 node library modules need to install `sudo npm install fast-csv --save` and `sudo npm install jsonfiles --save`
+* You need to build expressions.csv similiar as the one in the source control from previous description section.
+* Update index.js content for the survey name and the environment variable between dev and prod.
+* Then run `node index.js`, it will generated the assessment json for you to use when run ECHO API.  Those json files in the source control are example samples.
+* Once you have all the json needed, you need to run ECHO API on the ECHO server.
+* Here is how to get youself to dev echo docker container to deploy to dev-1:
+	
+	```
+	connect vpn
+	ssh dev-1
+	docker exec -it dev1_echo_1 /bin/bash 
+	```
+* Here is to get yourself to prod echo docker container to deploy to prod:
+	
+	```
+	connect vpn
+	ssh -p 2200 deploy@swarmctl.query.s44
+	docker exec -it echo_server_a_1 bash
+	```
+* Then first step you need to import survey, for example `curl localhost:8080/survey/provider/19939/LS2/774668`
+* Then second step is to create assessment if the target survey has any assessment defined.  If there's none, then you are done this step.  No need to run this step. The API command for example 
+
+	```
+	curl -X POST -H "Content-Type: application/json" -d '{"name":"Results","isActive":"true","isLowerBetter":"false","ignoreUnansweredQuestions":"true","numDecimalPlaces":"1"}' localhost:8080/survey/LS2/774668/assessment
+	
+	``` 
+	or load a json file you previously created if the json is too long to type.  For example : 
+	
+	```
+	curl -X POST -H "Content-Type: application/json" -d @'SunPower Supplier Scorecard - Cost Management Assessment.json' localhost:8080/survey/LS2/674424/assessment
+	
+	```
+	
+* Then finally the third and last step is to create survey tag for example `curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Trim Survey"}' localhost:8080/survey/LS2/774668/tag`
+  
+  
+## Notes
+* PM create survey within Prod Limesurvey
     * Limesurvey is in Docker container now.
     * use `docker-compose ps` to get your docker limesurvey ip     
     * on DEV1, `https://dev-svc-1-survey.sourceintelligence.net/admin/` adn admin and regular admin paswd.
@@ -72,34 +155,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"C
 	
 ---
 
-## The survey deployment process
-
-* Get the node scripts from source control //MISC/tools/limesurvey2/assessment directory
-* The needed files are index.js, package.json
-* This is node applicaiton, so you need to install node
-* There are 2 node library modules need to install `sudo npm install fast-csv --save` and `sudo npm install jsonfiles --save`
-* You need to build expressions.csv similiar as the one in the source control.
-* Update index.js content for the survey name and the environment variable between dev and prod.
-* Then run `node index.js`, it will generated the assessment json for you to use when run ECHO API.  Those json files in the source control are example samples.
-* Once you have all the json needed, you need to run ECHO API on the ECHO server.
-* Here is how to get youself to dev echo docker container to deploy to dev-1:
-	
-	```
-	connect vpn
-	ssh dev-1
-	docker exec -it dev1_echo_1 /bin/bash 
-	```
-* Here is to get yourself to prod echo docker container to deploy to prod:
-	
-	```
-	connect vpn
-	ssh -p 2200 deploy@swarmctl.query.s44
-	docker exec -it echo_server_a_1 bash
-	```
-* Then first step you need to import survey, for example `curl localhost:8080/survey/provider/19939/LS2/774668`
-* Then second step is to create assessment if the target survey has any assessment defined.  If there's none, then you are done this step.  No need to run this step. The API command for example `curl -X POST -H "Content-Type: application/json" -d '{"name":"Results","isActive":"true","isLowerBetter":"false","ignoreUnansweredQuestions":"true","numDecimalPlaces":"1"}' localhost:8080/survey/LS2/774668/assessment` or load a json file you previously created if the json is too long to type.
-* Then finally the third and last step is to create survey tag for example `curl -X POST -H "Content-Type: application/json" -d '{"type":"DOMAIN","value":"Trim Survey"}' localhost:8080/survey/LS2/774668/tag`
- 
 ---
 <!---->![Dev Setting](https://mingyuansung.github.io/graphic/<!---->BridgeKeepr_Dev_Setting.png)
 
