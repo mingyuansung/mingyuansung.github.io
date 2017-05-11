@@ -67,7 +67,7 @@ order by questionKey
 	
 * Insert the generated data to a new tab in the previous file for example you can take a look at this file [here] (https://docs.google.com/spreadsheets/u/1/d/1enhe7ex1Bk-SXkDf0dRHzPqSvbgDRltUZgQpQ3CY1YA/edit?usp=drive_web) Make sure you use the same column headers since they are needed later on to run the node script and copy the function inside the cell. In this example, fill in value "1" for the column "scoreMultiplier" and "points" and fill in value "SELF_ASSESSMENT" for the column "type" and "operand".  These values are for self assessment typed question, in different survey, PM need to supply the values.  The column "minScore" and "maxScore" are for PM to fill in.  Use "N/A" if not a value field.  Copy the function `=VLOOKUP(C2,'dev-1 question lookup'!A:B,2,false)` to cells under "dev1ProviderQuestionId" and the id will be filled in by the function.  You will need to do the same for Prod data.
 * Shared the google spreadsheet with the PM in order to fill out the min and max value if needed.
-* After all value filled in, the 1st tab can be generated into a csv file similiar to //MISC/tools/limesurvey2/assessment/expressions.csv
+* After all value filled in, the 1st tab can be generated into a csv file similar to //MISC/tools/limesurvey2/assessment/expressions.csv
 
   
 ## The ECHO API Survey deployment process
