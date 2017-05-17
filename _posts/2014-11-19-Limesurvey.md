@@ -94,6 +94,11 @@ order by questionKey
 	ssh -p 2200 deploy@swarmctl.query.s44
 	docker exec -it echo_server_a_1 bash
 	```
+* You can copy the json file into the container by for example for later ECHO API command usage
+
+	```
+docker cp SunPower\ Supplier\ Scorecard\ -\ Flexibility\ Assessment.json  dev1_echo_1:/usr/src/app/
+```
 * Then first step you need to import survey, for example `curl localhost:8080/survey/provider/19939/LS2/774668`
 * Then second step is to create assessment if the target survey has any assessment defined.  If there's none, then you are done this step.  No need to run this step. The API command for example 
 
