@@ -3,6 +3,34 @@ layout: post
 title: DEV box deployment
 ---
 
+## 2017 EDEN release to Production
+
+Preparation
+
+* You need to have access and connect to development VPN
+* You need to install flightplan by "npm install -g flightplan"
+* You need to install PHPRelease, follow the "Install" instructions to install PHPRelease, described in https://github.com/c9s/PHPRelease/
+* You need to have access to "http://kibana.query.s44:5601/"
+
+Step-by-step guide
+
+* Update your local EDEN master branch to the latest
+* Merge the release target PR branch
+* Do "phprelease --bump-minor" for example to bump the revision number in EDEN/sf2/src/Source44/Support/Version.php
+* Update CHANGELOG.MD following the existing format
+* Commit these 2 changes
+* Push to SI master
+* Wait till the image been build
+* Test the build on dev server
+* Go to your local EDEN master branch when things are fine
+* Do `fly status:prod` to know which group of EDEN servers is running now, a or b?
+* Vim docker-compose.prod.yml to update the next EDEN group to the target revision number
+* Do `fly deploy:prod` to deploy
+* Before you choose to dump the existing group of server, use `kibana.query.s44:5601` to check the target eden server completed build or not
+* You can then go to Prod site to check/verify EDEN revision from UI
+* After you're done, go back to veriy your local docker-compose.prod.yml for the correct EDEN revision
+* Commit and Push to SI master
+* YOU ARE DONE
 
 ## 2016 Docker way to release
 
