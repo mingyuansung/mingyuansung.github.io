@@ -4,7 +4,8 @@ title: Installation Guide (2014)
 ---  
  
  <span style="color: red !important;">There are new way to install in 2015...</span>
-##0. Useful Utilities
+ 
+## 0. Useful Utilities
 * install [macport](https://www.macports.org/install.php)
 * install homebrew `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 * install wget by `brew install wget`
@@ -34,15 +35,14 @@ title: Installation Guide (2014)
 ```
 
 
-
-##1. XCODE
+## 1. XCODE
 * go to install xcode form Apple App Store
 * agree xcode license by running `sudo xcodebuild -license`
 * run `xcode-select --install`
 
 
 
-##2. GIT
+## 2. GIT
 * create your own github account and get Chris to give you permission to access company git repository
 * go to https://github.com/Source-Intelligence
 * fork EDEN and others to your own github account repository
@@ -94,7 +94,7 @@ title: Installation Guide (2014)
 * `sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs`
 
 
-##3. Apache2  
+## 3. Apache2  
 
 * As of 2014-01 we are using 2.2.x in production  
 * To install using MacPorts:  
@@ -127,7 +127,7 @@ title: Installation Guide (2014)
     
 * Grant apache write permissions which we already did previously when we install GIT on app/logs and app/cache, see [tutorial](http://symfony.com/doc/2.1/book/installation.html#configuration-and-setup)
 
-##4. PHP 5.4.x  
+## 4. PHP 5.4.x  
 
 * You can use 5.4.x to run/write code compatible with the production environment (PROD still use 5.3) 
 * To install using MacPorts:  
@@ -257,7 +257,7 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
             apc.shm_size=128M
 ```  
 
-##5. MySQL
+## 5. MySQL
 
 * As of 2014-01 we are using 5.5.x in production
 * On OSX download and install the correct version 64-bit dmg from the link above
@@ -270,10 +270,10 @@ sudo port install php54-apc php54-curl php54-iconv php54-intl
 * You may want to verify `mysql`, `mysqldump`, `mysqlimport`, etc, are on the PATH
     * With a OSX .dmg install you can do: `sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql`
 
-##6. JAVA
+## 6. JAVA
 * [use JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 
-##7. IntelliJ
+## 7. IntelliJ
 
 * To force running under JDK 1.7 edit /Applications/IntelliJ IDEA 13.app/Contents/Info.plist file, change JVMVersion from 1.6* to 1.7* :
 * Ask Chris for company license
