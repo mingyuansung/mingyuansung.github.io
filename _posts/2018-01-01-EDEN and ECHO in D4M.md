@@ -3,7 +3,8 @@ layout: post
 title: EDEN and ECHO in D4M
 ---
 
-# 2018 EDEN and ECHO development environment
+#2018 EDEN and ECHO development environment
+
 
 ##Preparation
 
@@ -29,6 +30,7 @@ docker volume create mongodb-data
 ```
 * After EDEN installation, MySQL and MongoDB will be local. So you can not have other local DB installation
 
+
 ##EDEN installation Guide
 
 * Install Docker Sync `localhost$ gem install docker-sync`
@@ -51,6 +53,7 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 * `container\eden\sf2$ php app/console server:run 0.0.0.0:3000 -vvv`
 * `localhost$ sudo ifconfig lo0 alias 10.254.254.254/24` for intelliJ debug purpose
 * Your eden intelliJ can listen to port 3000 to debug
+
 
 ## ECHO installation Guide
 
