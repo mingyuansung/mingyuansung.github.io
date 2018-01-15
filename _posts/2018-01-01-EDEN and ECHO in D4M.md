@@ -7,16 +7,17 @@ title: EDEN and ECHO in D4M
 
 ##Preparation
 
-* Install D4M
+* Install Docker for Mac
+* Give more than 4GB ram to it after installation
 * Set the following environment variables in your local shell which are used by git and flightplan deployments. This can be done in `~/.bash_profile` or equivalent.
 
  
 ```
-export GIT_AUTHOR_NAME='Stephen Colbert'
-export GIT_AUTHOR_EMAIL='scolbert@sourceintelligence.com'
-export GIT_COMMITTER_NAME='Stephen Colbert'
-export GIT_COMMITTER_EMAIL='scolbert@sourceintelligence.com'
-export SI_DEPLOY_USER='scolbert'
+export GIT_AUTHOR_NAME='Ming Sung'
+export GIT_AUTHOR_EMAIL='msung@sourceintelligence.com'
+export GIT_COMMITTER_NAME='Ming Sung'
+export GIT_COMMITTER_EMAIL='msung@sourceintelligence.com'
+export SI_DEPLOY_USER='msung'
 
 ```
 
@@ -26,7 +27,7 @@ export SI_DEPLOY_USER='scolbert'
 docker volume create mysql-data
 docker volume create mongodb-data
 ```
-* After installation, MySQL and MongoDB will be local. So you can not have other local DB installation
+* After EDEN installation, MySQL and MongoDB will be local. So you can not have other local DB installation
 
 ##EDEN installation Guide
 
@@ -48,20 +49,19 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 * `container\eden\sf2$ composer install`
 * `container\eden\sf2$ php app/console assets:install web`
 * `container\eden\sf2$ php app/console server:run 0.0.0.0:3000 -vvv`
-* `sudo ifconfig lo0 alias 10.254.254.254/24`
+* `localhost$ sudo ifconfig lo0 alias 10.254.254.254/24` for intelliJ debug purpose
 * Your eden intelliJ can listen to port 3000 to debug
 
 ## ECHO installation Guide
 
 * turn off echo in EDEN container
-* `cd echo`
+* `container$ cd echo`
 * Update `.env` file to points to `eden`
-* `cd echo`
-* `cp ../docker-compose.yml .`
+* `container\echo$ cp ../docker-compose.yml .`
 * Make sure the java8 environment has this line: `SERVICE_8080_NAME: echo`
 * `container\echo$ docker-compose run --rm --service-ports java8`
 * Now you are in the ECHO container
-* `./gradlew bootRun` to run ECHO
+* `./gradlew bootRun` to run ECHO server
 * Your echo intelliJ can listen to port 8000 and debug
 
 ## Misc
