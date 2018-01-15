@@ -3,10 +3,10 @@ layout: post
 title: EDEN and ECHO in D4M
 ---
 
-##2018 EDEN and ECHO development environment
+# 2018 EDEN and ECHO development environment
 
 
-##Preparation
+## Preparation
 
 * Install Docker for Mac
 * Give more than 4GB ram to it after installation
@@ -31,7 +31,7 @@ docker volume create mongodb-data
 * After EDEN installation, MySQL and MongoDB will be local. So you can not have other local DB installation
 
 
-##EDEN installation Guide
+## EDEN installation Guide
 
 * Install Docker Sync `localhost$ gem install docker-sync`
 * Download the latest development container config
