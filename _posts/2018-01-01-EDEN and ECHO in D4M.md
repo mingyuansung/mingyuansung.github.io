@@ -73,6 +73,8 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 * `docker stop` and `docker rm` to remove containers
 * `docker images` to list all the images.
 * `docker rm mongodb-container` then `docker image rm -f e28cba33aad0` to remove the mongo image for example, so next docker-compose up will pull down a fresh new image to restart.
+* `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash` put yourself in the mongo data valume.
+* `docker run -it --rm --mount source=mysql-data,destination=/aaa krmcbride/debian bash`
 * some commands
 
 ```
