@@ -73,8 +73,11 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 * `docker stop` and `docker rm` to remove containers
 * `docker images` to list all the images.
 * `docker rm mongodb-container` then `docker image rm -f e28cba33aad0` to remove the mongo image for example, so next docker-compose up will pull down a fresh new image to restart.
-* `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash` put yourself in the mongo data valume.
+* `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash` put yourself in the mongo data valume to fix lock issue.
 * `docker run -it --rm --mount source=mysql-data,destination=/aaa krmcbride/debian bash`
+* `docker exec -it dev2_eden_1 /bin/bash` put yourself in the dev-2 docker container
+* you can test the batch command inside the container for example `php /var/www/project/app/console --env=prod --no-debug source44:cmrt:qc:flags:create 30`
+* or `php /var/www/project/app/console --env=prod --no-debug source44:cmrt:smelter:unmatched:email:send --startDate "2017-12-01" --endDate "2017-12-28"`
 * some commands
 
 ```
