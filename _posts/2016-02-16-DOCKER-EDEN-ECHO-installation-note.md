@@ -145,6 +145,8 @@ end tell
 ```
 * Then in my `.profile` I put in the alias as `alias eden='osascript sieden.scpt'`
 * also define the color green as `alias green=' echo -n -e "\033]6;1;bg;green;brightness;213\a"'`
+* define a kind of blue by `alias blue=' echo -e "\033]6;1;bg;red;brightness;92\a" "\033]6;1;bg;green;brightness;132\a" "\033]6;1;bg;blue;brightness;255\a"'`
+* define a kind of yellow as `alias yellow=' echo -e "\033]6;1;bg;red;brightness;255\a" "\033]6;1;bg;green;brightness;191\a" "\033]6;1;bg;blue;brightness;103\a"'`
 * When computer bootup, I can open an [iterm](https://iterm2.com/), then type `eden` to start the environment for me. You can Ctrl-c out of each tab to restart for example PHP server, or stop command line ECHO for IntelliJ debugger or just use Docker ECHO.
 
 ## Run local EDEN with Docker and local ECHO
