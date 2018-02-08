@@ -74,6 +74,8 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 * `docker images` to list all the images.
 * `docker rm mongodb-container` then `docker image rm -f e28cba33aad0` to remove the mongo image for example, so next docker-compose up will pull down a fresh new image to restart.
 * `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash` put yourself in the mongo data valume, then `cd /aaa` to change directory in order to remove the mongo lock file and fix the mongo lock issue.
+* or you can try:
+* `docker-compose run --rm mongodb rm /data/db/mongod.lock` then `docker-compose up -d mongodb`
 * `docker run -it --rm --mount source=mysql-data,destination=/aaa krmcbride/debian bash`
 * `docker exec -it dev2_eden_1 /bin/bash` put yourself in the dev-2 docker container
 * you can test the batch command inside the container for example `php /var/www/project/app/console --env=prod --no-debug source44:cmrt:qc:flags:create 30`
