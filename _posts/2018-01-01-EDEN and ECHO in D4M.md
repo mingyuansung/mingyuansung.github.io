@@ -69,7 +69,8 @@ localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-comp
 
 ## Misc
 
-* `docker ps -a` to list all containers
+* `php -r \@phpinfo\(\)\; | grep php.ini` to find where is php.ini
+*`docker ps -a` to list all containers
 * `docker stop` and `docker rm` to remove containers
 * `docker images` to list all the images.
 * `docker rm mongodb-container` then `docker image rm -f e28cba33aad0` to remove the mongo image for example, so next docker-compose up will pull down a fresh new image to restart.
