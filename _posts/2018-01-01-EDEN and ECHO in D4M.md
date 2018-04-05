@@ -89,6 +89,21 @@ docker-sync clean
 docker-sync start
 ```
 
+### test cmrt bulk upload on dev-2
+
+* `ssh dev-2`
+* `docker exec -it dev2_eden_1 /bin/bash`
+* `mkdir tmp`
+* copy all the needed xlsx and scv to the /tmp directory
+* from my local eden/tmp directory, do `scp cmrt_data.csv dev@dev-2:~/svcdev/` copy file into dev-2 first
+* then `ssh dev-2`
+* then `docker cp cmrt_data.csv dev2_eden_1:/var/www/project/tmp/` 
+* then `docker exec -it dev2_eden_1 /bin/bash`
+* then `cd tmp`
+* then `php ../app/console source44:cmrt:bulk-upload 89667 cmrt_data.csv --verificationOnly` to test
+* 
+
+
 ## Screen Shots related
 
 ![Dev Setting](https://mingyuansung.github.io/graphic/echo_remote_debug_setting.png)
