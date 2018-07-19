@@ -20,20 +20,9 @@ title: Kubectl in Deployment
 * `kubectl set image deployment/eden eden=docker.sourceintelligence.net/eden:1.2.3` to deploy eden verion 1.2.3 to dev2
 * `kubectl logs -f deployment/eden` view eden log
 
-```
-localhost$ cd eden
-localhost\eden$ docker pull docker.sourceintelligence.net/svcdev
-localhost\eden$ docker run docker.sourceintelligence.net/svcdev > ../docker-compose.yml
-```
-
 
 ## ECHO Deployment
 
 
 
 ## Misc
-
-
-## Screen Shots related
-
-![Dev Setting](https://mingyuansung.github.io/graphic/echo_remote_debug_setting.png)
