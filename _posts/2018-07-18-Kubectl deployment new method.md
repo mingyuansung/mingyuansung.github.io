@@ -8,7 +8,7 @@ title: Kubectl in Deployment
 
 ## Preparation
 
-* Install Docker for Mac
+* Install Docker for Mac `brew install kubernetes-cli`
 * Get from Kevin your AWS credentials in `~/.aws/credentials`
 * Get from [our repository](https://github.com/Source-Intelligence/k8s-prep/blob/master/kube-config.yaml) our `~/.kube/config`
 
@@ -23,6 +23,6 @@ title: Kubectl in Deployment
 
 ## ECHO Deployment
 
-
+the same procedure
 
 ## Misc
