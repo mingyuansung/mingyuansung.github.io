@@ -12,6 +12,13 @@ title: Kubectl in Deployment
 * Get from Kevin your AWS credentials in `~/.aws/credentials`
 * Get from [our repository](https://github.com/Source-Intelligence/k8s-prep/blob/master/kube-config.yaml) our `~/.kube/config`
 
+## Dev DB Access
+
+* Make dev mysql available at localhost:3307 and dev mongo at localhost:27018
+* Then use you db app point to 3307 to connect MySQL, 27018 to Mongodb
+* `kubectl -n db port-forward deployment/mysql 3307:3306`
+* `kubectl -n db port-forward deployment/mongodb 27018:27017`
+
 
 ## EDEN Deployment
 
