@@ -120,7 +120,7 @@ docker cp SunPower\ Supplier\ Scorecard\ -\ Flexibility\ Assessment.json  dev1_e
 * PM create survey within Prod Limesurvey
     * Limesurvey is in Docker container now.
     * use `docker-compose ps` to get your docker limesurvey ip     
-    * on DEV1, `https://dev-svc-1-survey.sourceintelligence.net/admin/` adn admin and regular admin paswd.
+    * on DEV1, `https://dev-svc-1-survey.sourceintelligence.com/admin/` adn admin and regular admin paswd.
     * on your local, `http://boot2docker:8001/admin`. You can update the admin id email and paswd in `docker_ls2` table.
     * use this command to copy dev1 mongo eden content to your local computer, then you can load it into your docker mongo or whatever. `docker run -it --rm -v $PWD/dump:/root/dump docker.sourceintelligence.net/mongo:2.6 mongodump --host dev-1.node.us-west-2.s44 --db docker_eden` You have to run it under docker environment of course, for example the environment you start up the container.
     * use `bsondump collection.bson > collection.json` to convert the download to json if you need.  You need to have local mongo installation to have bsondump.
