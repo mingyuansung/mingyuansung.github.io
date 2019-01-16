@@ -30,11 +30,11 @@ title: Kubectl in Deployment
 
 * `kubectl config use-context dev2` to set your default context
 * `kubectl config current-context` to check your current default context
-* `kubectl get deployment eden -o wide` to check current version of eden on dev2 which is your current default context
+* `kubectl --context dev2 get deployment eden -o wide` to check current version of eden on dev2 which is your current default context
 * `kubectl --context dev4 get deployment eden -o wide` to check the dev4 current eden revision ignoring your current default context setting which is dev2
-* `kubectl set image deployment/eden eden=docker.sourceintelligence.net/eden:1.2.3` to deploy eden verion 1.2.3 to dev2
+* `kubectl --context dev2 set image deployment/eden eden=docker.sourceintelligence.net/eden:1.2.3` to deploy eden verion 1.2.3 to dev2
 * `kubectl --context dev2 get pods -l app=eden -w` to watch changes to eden Pod on dev2
-* `kubectl logs -f deployment/eden` view eden log
+* `kubectl --context dev2 logs -f deployment/eden` view eden log
 
 ## EDEN PROD Deployment
 * Go to your local eden directory
