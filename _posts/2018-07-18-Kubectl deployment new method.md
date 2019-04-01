@@ -35,6 +35,7 @@ title: Kubectl in Deployment
 * `kubectl --context dev2 set image deployment/eden eden=docker.sourceintelligence.net/eden:1.2.3` to deploy eden verion 1.2.3 to dev2
 * `kubectl --context dev2 get pods -l app=eden -w` to watch changes to eden Pod on dev2
 * `kubectl --context dev2 logs -f deployment/eden` view eden log
+* `kubectl --context dev2 get pods -l app=eden` to get the container ID, then `kubectl --context dev2 logs eden-66795f589b-5rmcm` to view that eden container log
 
 ## EDEN PROD Deployment
 * Go to your local eden directory
