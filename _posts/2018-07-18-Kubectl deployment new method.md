@@ -52,6 +52,10 @@ title: Kubectl in Deployment
 * the same procedure as EDEN deployment
 * probably `kubectl --context prod1 apply -f manifest.yaml && kubectl --context prod1 get -f manifest.yaml -o wide -w`
 
+## Test
+* remove all images you do `docker rmi -f $(docker images -a -q)`
+
+
 ## Misc
 * `kubectl --context dev1 get pods -l app=echo -w` to see echo pod information on dev1
 * it will show for example:
