@@ -57,7 +57,7 @@ title: Kubectl in Deployment
 * remove all images at once you do `docker rmi -f $(docker images -a -q)`
 * if mongodb does not want to start you can do `docker-compose run --rm mongodb rm /data/db/mongod.lock`, then restart your mongodb
 * if still no lock, run this command in your eden container to put yourself in your data directory `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash`
-* then `cd /aaa` to put yourself in the /db/data directory, then you can delete corrupt files.  mongo lock or TigerWidget files.
+* then `cd /aaa` to put yourself in the /db/data directory, then you can delete corrupt files.  mongo lock or WiredTiger files.
 * then `exit` back to your eden contianer, restart mogodb
 
 
