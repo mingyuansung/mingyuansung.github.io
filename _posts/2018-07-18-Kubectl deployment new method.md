@@ -60,6 +60,10 @@ title: Kubectl in Deployment
 * then `cd /aaa` to put yourself in the /db/data directory, then you can delete corrupt files.  mongo lock or WiredTiger files.
 * then `exit` back to your eden contianer, restart mogodb
 
+## Test ECHO on dev
+* `kubectl --context dev1 port-forward deployment/echo 8080` then can use Postman t test `http://localhost:8080/smelters` with paramter headers or `curl --location --request GET 'localhost:8080/campaign/active-requests' \
+--header 'X-SI-USER-ID: 14395' --header 'X-SI-COMPANY-ID: 27306'`
+
 
 ## Misc
 * `kubectl --context dev1 get pods -l app=echo -w` to see echo pod information on dev1
