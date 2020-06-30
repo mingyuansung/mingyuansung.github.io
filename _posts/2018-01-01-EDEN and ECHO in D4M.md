@@ -101,7 +101,26 @@ docker-sync start
 * then `docker exec -it dev2_eden_1 /bin/bash`
 * then `cd tmp`
 * then `php ../app/console source44:cmrt:bulk-upload 89667 cmrt_data.csv --verificationOnly` to test
-* 
+ 
+## Test ECHO extraction, export
+* turn on local echo server
+* then use rabbit mq page at http://localhost:15672/#/queues/%2F/echo%2Freport
+* login rabbit mq admin page as quest
+* choose either extraction or report generation channel
+![Dev Setting](https://mingyuansung.github.io/graphic/extraction_values.png)
+
+* modify extraction related db record value 1st
+![Dev Setting](https://mingyuansung.github.io/graphic/echo_extraction_test_1.png)
+
+* fill in property and payload value for extraction, then post message
+![Dev Setting](https://mingyuansung.github.io/graphic/extraction_values.png)
+
+* modify report related db record value 1st
+![Dev Setting](https://mingyuansung.github.io/graphic/echo_extraction_test_2.png)
+
+* or fill in property and payload value for roll up export generation, then post message
+![Dev Setting](https://mingyuansung.github.io/graphic/report_values.png)
+
 
 
 ## Screen Shots related
