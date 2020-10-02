@@ -59,6 +59,8 @@ title: Kubectl in Deployment
 * if still no lock, run this command in your eden container to put yourself in your data directory `docker run -it --rm --mount source=mongodb-data,destination=/aaa krmcbride/debian bash`
 * then `cd /aaa` to put yourself in the /db/data directory, then you can delete corrupt files.  mongo lock or WiredTiger files.
 * then `exit` back to your eden contianer, restart mogodb
+* ---
+* To view echo log while local testing eden, go to local eden container then run `docker-compose logs echo`
 
 ## Test ECHO on dev
 * `kubectl --context dev1 port-forward deployment/echo 8080` then can use Postman t test `http://localhost:8080/smelters` with paramter headers or `curl --location --request GET 'localhost:8080/campaign/active-requests' \
