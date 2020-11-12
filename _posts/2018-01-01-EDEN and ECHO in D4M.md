@@ -109,13 +109,13 @@ docker-sync start
 * choose either extraction or report generation channel
 ![Dev Setting](https://mingyuansung.github.io/graphic/extraction_values.png)
 
-* modify extraction related db record value 1st
+* modify extraction related db record value 1st. Set "extracted_response_id" to null, "status" to pending
 ![Dev Setting](https://mingyuansung.github.io/graphic/echo_extraction_test_1.png)
 
 * fill in property and payload value for extraction, then post message
 ![Dev Setting](https://mingyuansung.github.io/graphic/extraction_values.png)
 
-* modify report related db record value 1st
+* modify report related db record value 1st, "status" to UNFULFILLED and "report_file_mongo_id" to null
 ![Dev Setting](https://mingyuansung.github.io/graphic/echo_extraction_test_2.png)
 
 * or fill in property and payload value for roll up export generation, then post message
